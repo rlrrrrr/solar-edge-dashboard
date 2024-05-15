@@ -6,6 +6,16 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import Navbar from "app/@/components/ui/navbar"
+import Footer from "app/@/components/ui/footer";
+
+import type { LinksFunction } from "@remix-run/node";
+import styles from "./tailwind.css?url";
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: styles },
+];
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -16,9 +26,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <Navbar/>
+        <div className="px-5 sm:px-10">
+          {children}
+        </div>
         <ScrollRestoration />
         <Scripts />
+        <Footer/>
       </body>
     </html>
   );
