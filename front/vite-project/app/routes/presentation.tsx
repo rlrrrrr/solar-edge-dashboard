@@ -1,5 +1,3 @@
-
-import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "components/ui/table"
 import OpeningTimeTable from "components/ui/openingTimeTable"
 import ParagraphSection from "components/ui/paragraphSection"
 import Section from "components/ui/section"
