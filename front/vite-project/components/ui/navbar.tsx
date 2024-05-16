@@ -34,7 +34,7 @@ export default function Navbar() {
 
         <Link
           className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-          to="#"
+          to="/solarPanelDashboard"
         >
           Panneaux solaires
         </Link>
@@ -61,62 +61,6 @@ export default function Navbar() {
             >
               Home
             </a>
-            <Collapsible className="grid gap-4">
-              <CollapsibleTrigger className="inline-flex items-center justify-between rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 [&[data-state=open]>svg]:rotate-90">
-                Products
-                <ChevronRightIcon className="h-5 w-5 transition-all" />
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <div className="-mx-4 grid gap-2 bg-gray-100 p-4 dark:bg-gray-800">
-                  <a
-                    className="block rounded-md px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-50 dark:focus:bg-gray-700 dark:focus:text-gray-50"
-                    href="#"
-                  >
-                    Product 1
-                  </a>
-                  <a
-                    className="block rounded-md px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-50 dark:focus:bg-gray-700 dark:focus:text-gray-50"
-                    href="#"
-                  >
-                    Product 2
-                  </a>
-                  <a
-                    className="block rounded-md px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-50 dark:focus:bg-gray-700 dark:focus:text-gray-50"
-                    href="#"
-                  >
-                    Product 3
-                  </a>
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
-            <Collapsible className="grid gap-4">
-              <CollapsibleTrigger className="inline-flex items-center justify-between rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 [&[data-state=open]>svg]:rotate-90">
-                Resources
-                <ChevronRightIcon className="h-5 w-5 transition-all" />
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <div className="-mx-4 grid gap-2 bg-gray-100 p-4 dark:bg-gray-800">
-                  <a
-                    className="block rounded-md px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-50 dark:focus:bg-gray-700 dark:focus:text-gray-50"
-                    href="#"
-                  >
-                    Documentation
-                  </a>
-                  <a
-                    className="block rounded-md px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-50 dark:focus:bg-gray-700 dark:focus:text-gray-50"
-                    href="#"
-                  >
-                    Blog
-                  </a>
-                  <a
-                    className="block rounded-md px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-50 dark:focus:bg-gray-700 dark:focus:text-gray-50"
-                    href="#"
-                  >
-                    Support
-                  </a>
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
             <a
               className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
               href="#"

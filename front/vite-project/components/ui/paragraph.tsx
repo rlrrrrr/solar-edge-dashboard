@@ -14,5 +14,5 @@ export default function Paragraph({ variant = 'primary', children }: ParagraphPr
 
   const className = `${variantClass[variant]}`;
 
-  return <h1 className={className}>{children}</h1>;
+  return <p className={className}>{children}</p>;
 }

@@ -1,9 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/PHjxmipRNh0
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
- import {Link} from '@remix-run/react'
 import HorizontalPresentation from 'components/ui/horizontalPresentation'
  import Section from 'components/ui/section'
 
@@ -16,7 +10,7 @@ import HorizontalPresentation from 'components/ui/horizontalPresentation'
         imgSrc='/placeholder.svg'
         flexDirection={false}
        />
-       
+
        <HorizontalPresentation/>
        
        <Section

@@ -1,9 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/hTD9waXxTvG
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-import { Link } from "@remix-run/react";
 import PartnerSection from "components/ui/partnerSection";
 import Section from "components/ui/section";
 import HeroSection from "components/ui/heroSection";
