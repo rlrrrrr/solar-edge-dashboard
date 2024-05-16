@@ -1,78 +1,50 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/8oqSytC3aQF
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "app/@/components/ui/dropdown-menu"
-import { Button } from "app/@/components/ui/button"
-import { SheetTrigger, SheetContent, Sheet } from "app/@/components/ui/sheet"
-import { CollapsibleTrigger, CollapsibleContent, Collapsible } from "app/@/components/ui/collapsible"
+
+import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "components/ui/dropdown-menu"
+import { Button } from "components/ui/button"
+import { SheetTrigger, SheetContent, Sheet } from "components/ui/sheet"
+import { CollapsibleTrigger, CollapsibleContent, Collapsible } from "components/ui/collapsible"
 import { Link } from "@remix-run/react"
 
 export default function Navbar() {
   return (
     <header className="mb-10 flex h-16 w-full items-center justify-between px-4 md:px-6">
-      <a className="flex items-center gap-2" href="#">
+      <Link className="flex items-center gap-2" to="/home">
         <MountainIcon className="h-6 w-6" />
         <span className="text-lg font-semibold">Acme Inc</span>
-      </a>
+      </Link>
       <nav className="hidden items-center gap-6 md:flex">
-        <a
+        <Link
           className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-          href="/home"
-        >
-          Home
-        </a>
+          to="/presentation">
+          Présentation
+        </Link>
+
+        {/* <Link
+        className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
+        to="/login">
+          Se connecter
+        </Link> */}
 
         <Link
-        className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-        to="/presentation">
-          A propos
+          className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
+          to="/technologies"
+        >
+          Technologies
         </Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50">
-              Resources
-              <ChevronDownIcon className="ml-2 h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-48">
-              <DropdownMenuItem>
-                <a
-                  className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-                  href="#"
-                >
-                  Documentation
-                </a>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <a
-                  className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-                  href="#"
-                >
-                  Blog
-                </a>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <a
-                  className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-                  href="#"
-                >
-                  Support
-                </a>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <a
-            className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-            href="#"
-          >
-            Pricing
-          </a>
-          <a
-            className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-            href="#"
-          >
-            Contact
-          </a>
+
+        <Link
+          className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
+          to="#"
+        >
+          Panneaux solaires
+        </Link>
+
+        <Link
+          className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
+          to="#"
+        >
+          Contact
+        </Link>
       </nav>
       <Sheet>
         <SheetTrigger asChild>

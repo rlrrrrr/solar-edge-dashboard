@@ -1,9 +1,10 @@
-import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "app/@/components/ui/table"
+import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "components/ui/table"
+import Title from "./title"
 
 export default function OpeningTimeTable() {
     return (
         <div className="space-y-2">
-            <h2 className="text-2xl font-bold">Nos horaires</h2>
+            <Title variant='secondary'>Nos horaires</Title>
             <div className="rounded-lg border dark:border-gray-800 overflow-hidden">
                 <Table>
                     <TableHeader>

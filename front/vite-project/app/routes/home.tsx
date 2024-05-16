@@ -4,12 +4,14 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import { Link } from "@remix-run/react";
-import PartnerSection from "~/@/components/ui/partnerSection";
-import Section from "~/@/components/ui/section";
+import PartnerSection from "components/ui/partnerSection";
+import Section from "components/ui/section";
+import HeroSection from "components/ui/heroSection";
 //<Section btnValueBlack="En savoir plus" btnValueWhite="Nous contacter" text="le texteeeeeuuuuuu" title="un titre"/>
 export default function Component() {
   return (
     <>
+      <HeroSection/>
       <Section
         btnValueBlack="En savoir plus"
         btnValueWhite="Nous contacter"

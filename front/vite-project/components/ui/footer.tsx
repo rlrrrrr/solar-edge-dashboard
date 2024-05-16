@@ -1,8 +1,5 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/foBUHEiKkpl
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+import Paragraph from "./paragraph"
+
 
  export default function Footer() {
    return (
@@ -13,7 +10,7 @@
            <span className="font-semibold text-gray-300">Acme Inc</span>
          </div>
          <div className="flex items-center space-x-4">
-           <p className="text-sm">© 2024 Acme Inc. All rights reserved.</p>
+           <Paragraph variant="tertiary">© 2024 Acme Inc. All rights reserved.</Paragraph>
            <a className="text-sm hover:text-gray-300 transition-colors" href="#">
              Privacy Policy
            </a>

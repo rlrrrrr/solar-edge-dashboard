@@ -1,5 +1,6 @@
 import React, { Children } from "react";
 import { Button } from "./button";
+import Title from "./title";
 
 export default function Section({
   btnValueBlack, btnValueWhite, blackLink, whiteLink, text, title, imgSrc, flexDirection, children
@@ -10,7 +11,7 @@ export default function Section({
   whiteLink?: string,
   text?: string,
   title?: string,
-  imgSrc: string,
+  imgSrc?: string,
   flexDirection: boolean,
   children?: React.ReactNode
 }) {
@@ -20,9 +21,9 @@ export default function Section({
         <div className={`grid gap-6 lg:grid-cols-[1fr_550px] lg:gap-12 xl:grid-cols-[1fr_600px] ${flexDirection ? 'lg:grid-cols-[550px_1fr]' : ''}`}>
           <div className={`space-y-4 ${flexDirection ? 'lg:order-last' : 'lg:order-first'}`}>
             <div className="space-y-2">
-              {title&&<h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+              {title&&<Title variant='secondary'>
                 {title}
-              </h1>}
+                </Title>}
               {text&&<p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 {text}
               </p>}
@@ -41,13 +42,14 @@ export default function Section({
               </a>}
             </div>
           </div>
+          {imgSrc &&
           <img
             alt="Histoire de l'entreprise"
             className={`mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full ${flexDirection ? 'lg:order-first' : 'lg:order-last'}`}
             height="310"
             src={imgSrc}
             width="550"
-          />
+          />}
         </div>
       </div>
     </section>

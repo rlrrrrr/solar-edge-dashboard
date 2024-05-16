@@ -6,8 +6,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import Navbar from "app/@/components/ui/navbar"
-import Footer from "app/@/components/ui/footer";
+import Navbar from "components/ui/navbar"
+import Footer from "components/ui/footer";
 
 import type { LinksFunction } from "@remix-run/node";
 import styles from "./tailwind.css?url";
