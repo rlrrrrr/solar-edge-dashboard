@@ -1,0 +1,12 @@
+{
+    "envBenefits": {
+      "gasEmissionSaved": {
+        "units": "kg",
+        "co2": 216.7408,
+        "so2": 501.60013,
+        "nox": 1572.9188
+      },
+      "treesPlanted": 0.71214831,
+      "lightBulbs": 9382.718
+    }
+  }

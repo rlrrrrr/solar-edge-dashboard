@@ -2,6 +2,10 @@ import HeroSection from "components/ui/heroSection"
 import DashboardCard from "components/ui/dashboardCard"
 import Title from "components/ui/title"
 import Paragraph from "components/ui/paragraph"
+import ProductionChart from "components/ui/productionChart";
+import GasEmissionChart from "components/ui/gasEmissions";
+import AvgProductionChart from "components/ui/avgProductionChart";
+
 export default function Component() {
     return (
         <>
@@ -10,10 +14,10 @@ export default function Component() {
                 <main className="flex-1 bg-gray-100 py-8 px-6">
                     <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         <DashboardCard title="graphe 1">
-                            {/* graph here */}
+                            <ProductionChart />
                         </DashboardCard>
                         <DashboardCard title="graphe 2">
-                            {/* graph here */}
+                            <GasEmissionChart />
                         </DashboardCard>
                         <DashboardCard title="statut">
                             <div className="grid grid-cols-2 gap-4">
@@ -28,7 +32,7 @@ export default function Component() {
                             </div>
                         </DashboardCard>
                         <DashboardCard title="graphe 3">
-                            {/* graph here */}
+                            <AvgProductionChart />
                         </DashboardCard>
                         <DashboardCard title="battery">
                             <div className="grid grid-cols-2 gap-4">
