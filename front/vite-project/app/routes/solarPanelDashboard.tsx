@@ -3,8 +3,9 @@ import DashboardCard from "components/ui/dashboardCard"
 import Title from "components/ui/title"
 import Paragraph from "components/ui/paragraph"
 import ProductionChart from "components/ui/productionChart";
-import GasEmissionChart from "components/ui/gasEmissions";
+import GasEmissionChart from "components/ui/gasEmissionsChart";
 import AvgProductionChart from "components/ui/avgProductionChart";
+import DayProductionChart from "components/ui/dayProductionChart";
 
 export default function Component() {
     return (
@@ -33,6 +34,9 @@ export default function Component() {
                         </DashboardCard>
                         <DashboardCard title="graphe 3">
                             <AvgProductionChart />
+                        </DashboardCard>
+                        <DashboardCard title="graphe 4">
+                            <DayProductionChart />
                         </DashboardCard>
                         <DashboardCard title="battery">
                             <div className="grid grid-cols-2 gap-4">
