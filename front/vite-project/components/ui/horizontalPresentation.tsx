@@ -1,11 +1,12 @@
 import Paragraph from "./paragraph"
+import Title from "./title"
 export default function HorizontalPresentation() {
     return (
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
             <div className="container grid gap-8 px-4 md:px-6 lg:grid-cols-4 xl:grid-cols-4">
                 <div className="grid gap-4">
                     <BotIcon className="h-12 w-12 text-primary" />
-                    <h3 className="text-xl font-bold">Robotic Assistance</h3>
+                    <Title variant='tertiary'>Robotic Assistance</Title>
                     <Paragraph variant="tertiary">
                         Our advanced robots navigate the aisles, restocking shelves and assisting customers with their shopping
                         needs.
@@ -13,7 +14,7 @@ export default function HorizontalPresentation() {
                 </div>
                 <div className="grid gap-4">
                     <RadarIcon className="h-12 w-12 text-primary" />
-                    <h3 className="text-xl font-bold">RFID Technology</h3>
+                    <Title variant='tertiary'>RFID Technology</Title>
                     <Paragraph variant="tertiary">
                         RFID tags on our products allow for seamless inventory management and checkout, reducing wait times and
                         improving efficiency.
@@ -21,7 +22,7 @@ export default function HorizontalPresentation() {
                 </div>
                 <div className="grid gap-4">
                     <WifiIcon className="h-12 w-12 text-primary" />
-                    <h3 className="text-xl font-bold">LiFi Connectivity</h3>
+                    <Title variant='tertiary'>LiFi Connectivity</Title>
                     <Paragraph variant="tertiary">
                         Our store utilizes LiFi technology, providing high-speed, secure internet access throughout the
                         supermarket.
@@ -29,7 +30,7 @@ export default function HorizontalPresentation() {
                 </div>
                 <div className="grid gap-4">
                     <VideoIcon className="h-12 w-12 text-primary" />
-                    <h3 className="text-xl font-bold">VLC Navigation</h3>
+                    <Title variant='tertiary'>VLC Navigation</Title>
                     <Paragraph variant="tertiary">
                         Visible Light Communication (VLC) guides customers through the store, providing real-time information and
                         personalized recommendations.

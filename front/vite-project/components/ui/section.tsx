@@ -1,5 +1,6 @@
 import React, { Children } from "react";
 import { Button } from "./button";
+import Paragraph from "./paragraph";
 import Title from "./title";
 
 export default function Section({
@@ -24,9 +25,9 @@ export default function Section({
               {title&&<Title variant='secondary'>
                 {title}
                 </Title>}
-              {text&&<p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              {text&&<Paragraph variant="secondary">
                 {text}
-              </p>}
+              </Paragraph>}
               {children}
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
