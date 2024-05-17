@@ -6,11 +6,10 @@ import Paragraph from "./paragraph"
      <footer className="mt-10 bg-gray-900 text-gray-400 py-8 px-4 md:px-6">
        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
          <div className="flex items-center mb-4 md:mb-0">
-           <MountainIcon className="h-6 w-6 text-gray-400 mr-2" />
-           <span className="font-semibold text-gray-300">Acme Inc</span>
+           <span className="font-semibold text-gray-300">Solar Panel</span>
          </div>
          <div className="flex items-center space-x-4">
-           <Paragraph variant="tertiary">© 2024 Acme Inc. All rights reserved.</Paragraph>
+           <Paragraph variant="tertiary">lorem ipsum</Paragraph>
            <a className="text-sm hover:text-gray-300 transition-colors" href="#">
              Privacy Policy
            </a>
