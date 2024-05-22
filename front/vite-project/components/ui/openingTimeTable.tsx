@@ -5,7 +5,7 @@ export default function OpeningTimeTable() {
     return (
         <div className="space-y-2">
             <Title variant='secondary'>Nos horaires</Title>
-            <div className="rounded-lg border dark:border-gray-800 overflow-hidden">
+            <div className="rounded-lg border dark:border-gray-800 overflow-hidden bg-gray-100 dark:bg-gray-800">
                 <Table>
                     <TableHeader>
                         <TableRow>

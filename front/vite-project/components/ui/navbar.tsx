@@ -4,7 +4,7 @@ import { Link } from "@remix-run/react"
 
 export default function Navbar() {
   return (
-    <header className="mb-10 flex h-16 w-full items-center justify-between px-4 md:px-6">
+    <header className=" mb-10 flex h-16 w-full items-center justify-between px-4 md:px-6">
       <Link className="flex items-center gap-2" to="/">
         <span className="text-lg font-semibold">Solar Panel</span>
       </Link>
@@ -30,7 +30,7 @@ export default function Navbar() {
 
         <Link
           className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-          to="#"
+          to="/solarPanelDashboard"
         >
           Panneaux solaires
         </Link>
@@ -60,19 +60,19 @@ export default function Navbar() {
 
             <Link
                 className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-                to="/pésentation"
+                to="/presentation"
             >
               Présentation
             </Link>
             <Link
                 className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-                to="/technologie"
+                to="/technologies"
             >
               Technologies
             </Link>
             <a
                 className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50"
-                href=""
+                href="/solarPanelDashboard"
             >
               Dashboard
             </a>
