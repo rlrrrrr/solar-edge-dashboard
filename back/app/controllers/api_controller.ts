@@ -25,6 +25,9 @@ class CacheKey {
 let apiKey = env.get('SOLAREDGE_APIKEY');
 if (!apiKey) throw new Error("Missing SolarEdge API key in env");
 
+let siteId = env.get('SOLAREDGE_SITEID');
+if (!siteId) throw new Error("Missing SolarEdge Site ID in env");
+
 let endpoint = env.get('SOLAREDGE_ENDPOINT');
 if (!endpoint) throw new Error("Missing SolarEdge Endpoint in env");
 else if (!endpoint?.startsWith('http://')) endpoint = 'https://' + endpoint;
@@ -54,7 +57,7 @@ export default class ApiController {
 
     logger.info("Sending SolarEdge request for key "+key.toString());
     // make request to SolarEdge API
-    let resp = await fetch(endpoint + '/site/4082483/energy?'+new URLSearchParams({
+    let resp = await fetch(endpoint + `/site/${siteId}/energy?`+new URLSearchParams({
       api_key: apiKey!,
       startDate: key.startDate,
       endDate: key.endDate,
