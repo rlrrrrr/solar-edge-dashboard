@@ -8,7 +8,10 @@ export default function Component() {
     return (
         <>
             <div className="space-y-8">
-                <ParagraphSection text={"Notre outil est conçu pour vous simplifier la vie et vous aider à atteindre vos objectifs de manière efficace. Il vous permet de gérer vos tâches, de collaborer avec votre équipe et de suivre vos progrès en temps réel."} title={'Présentation de notre outil'} />
+                <ParagraphSection
+                    text={"L'épicerie solidaire du Magasin Connecté fonctionne grâce à une association étudiante indépendante qui propose des produits essentiels à des prix réduits pour soutenir les étudiants dans le besoin."}
+                    title={'Présentation du Magasin Connecté 4.0'}
+                    />
                 <Section
                     title={"Comment ça fonctionne ?"}
                     text={"Notre outil est conçu pour être intuitif et facile à utiliser. Vous pouvez facilement ajouter des tâches, les organiser en projets et suivre leur avancement. Vous pouvez également inviter des membres de votre équipe à collaborer avec vous."}
