@@ -5,8 +5,8 @@ import Paragraph from "components/ui/paragraph"
 export default function Component() {
     return (
         <>
-            <HeroSection />
             <div className="flex min-h-screen flex-col">
+              <Title supClass="mb-10">Dashboard : panneaux solaires</Title>
                 <main className="flex-1 bg-gray-100 py-8 px-6">
                     <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         <DashboardCard title="graphe 1">
