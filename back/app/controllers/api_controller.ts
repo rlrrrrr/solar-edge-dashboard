@@ -1,5 +1,6 @@
 import { HttpContext } from '@adonisjs/core/http'
 import env from '#start/env'
+import logger from '@adonisjs/core/services/logger';
 
 const timeUnits = ["QUARTER_OF_AN_HOUR", "HOUR", "DAY", "WEEK", "MONTH", "YEAR"];
 
@@ -51,6 +52,7 @@ export default class ApiController {
       return;
     }
 
+    logger.info("Sending SolarEdge request for key "+key.toString());
     // make request to SolarEdge API
     let resp = await fetch(endpoint + '/site/4082483/energy?'+new URLSearchParams({
       api_key: apiKey!,
