@@ -9,6 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
+import ApiController from '#controllers/api_controller'
 const SessionController = () => import('#controllers/session_controller')
 const UsersController = () => import('#controllers/users_controller')
 
@@ -29,3 +30,5 @@ router
 router.post('/login', [SessionController, 'store'])
 
 router.post('/signin', [UsersController, 'store'])
+
+router.get('/api/electricity', [ApiController, 'electricity'])
