@@ -19,6 +19,15 @@ class CacheKey {
   }
 }
 
+
+// retrieve info from env, and crash if not available
+let apiKey = env.get('SOLAREDGE_APIKEY');
+if (!apiKey) throw new Error("Missing SolarEdge API key in env");
+
+let endpoint = env.get('SOLAREDGE_ENDPOINT');
+if (!endpoint) throw new Error("Missing SolarEdge Endpoint in env");
+else if (!endpoint?.startsWith('http://')) endpoint = 'https://' + endpoint;
+
 var cache: Map<CacheKeyStr, JSON> = new Map();
 
 export default class ApiController {
@@ -40,13 +49,6 @@ export default class ApiController {
       response.header('X-Cache', 'true');
       response.send(value);
       return;
-    }
-
-    // retrieve info from env
-    let apiKey = env.get('SOLAREDGE_APIKEY');
-    let endpoint = env.get('SOLAREDGE_ENDPOINT');
-    if (!endpoint?.startsWith('http://')) {
-      endpoint = 'https://' + endpoint;
     }
 
     // make request to SolarEdge API
