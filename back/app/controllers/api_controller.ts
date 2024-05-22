@@ -1,15 +1,6 @@
 import { HttpContext } from '@adonisjs/core/http'
 import env from '#start/env'
 
-// add time of the day if not present
-function addTimeOfTheDay(s: string): string {
-  if (s.split(' ').length !== 2) { // assume time of the day is not included
-    return s + ' 00:00:00';
-  } else {
-      return s;
-  }
-}
-
 const timeUnits = ["QUARTER_OF_AN_HOUR", "HOUR", "DAY", "WEEK", "MONTH", "YEAR"];
 
 class CacheKey {
@@ -17,8 +8,8 @@ class CacheKey {
   public endDate: string;
   public timeUnit: string;
   constructor(startDate: string, endDate: string, timeUnit: string) {
-    this.startDate = addTimeOfTheDay(startDate);
-    this.endDate = addTimeOfTheDay(endDate);
+    this.startDate = startDate;
+    this.endDate = endDate;
     this.timeUnit = timeUnit;
   }
 }
