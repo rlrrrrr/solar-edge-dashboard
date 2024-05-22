@@ -29,10 +29,12 @@ export default class ApiController {
       else response.abort({ message: "Missing parameter: "+key });
     }
 
-    // check if we have cached this request in the cache
+    // caclulate cache key
     let timeUnit = ensureParam('timeUnit');
     if (!timeUnits.includes(timeUnit)) response.abort({ message: "Invalid time unit: "+timeUnit})
     let key = new CacheKey(ensureParam('startDate'), ensureParam("endDate"), timeUnit);
+
+    // check if we have cached this request in the cache
     let value = cache.get(key.toString());
     if (value !== undefined) {
       response.header('X-Cache', 'true');
