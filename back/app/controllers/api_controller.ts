@@ -3,6 +3,7 @@ import env from '#start/env'
 
 const timeUnits = ["QUARTER_OF_AN_HOUR", "HOUR", "DAY", "WEEK", "MONTH", "YEAR"];
 
+type CacheKeyStr = string;
 class CacheKey {
   public startDate: string;
   public endDate: string;
@@ -12,9 +13,13 @@ class CacheKey {
     this.endDate = endDate;
     this.timeUnit = timeUnit;
   }
+
+  toString(): CacheKeyStr {
+    return JSON.stringify(this);
+  }
 }
 
-var cache: Map<CacheKey, JSON> = new Map();
+var cache: Map<CacheKeyStr, JSON> = new Map();
 
 export default class ApiController {
   async electricity({ request, response }: HttpContext) {
@@ -28,7 +33,7 @@ export default class ApiController {
     let timeUnit = ensureParam('timeUnit');
     if (!timeUnits.includes(timeUnit)) response.abort({ message: "Invalid time unit: "+timeUnit})
     let key = new CacheKey(ensureParam('startDate'), ensureParam("endDate"), timeUnit);
-    let value = cache.get(key);
+    let value = cache.get(key.toString());
     if (value !== undefined) {
       response.header('X-Cache', 'true');
       response.send(value);
@@ -55,7 +60,11 @@ export default class ApiController {
       return;
     }
 
+    let json = await resp.json();
+    // set cache key
+    cache.set(key.toString(), json);
+
     response.header('X-Cache', 'false');
-    response.send(await resp.json());
+    response.send(json);
   }
 }
