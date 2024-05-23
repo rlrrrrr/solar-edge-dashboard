@@ -76,7 +76,7 @@ export default class ApiController {
     }
 
     logger.info(`Sending SolarEdge request with start date ${startDate}, end date ${endDate}, time unit ${timeUnit}`);
-    logger.info(`(Wanted key is ${key.toString()})`);
+    debug.info(`(Wanted key is ${key.toString()})`);
     // make request to SolarEdge API
     let resp = await fetch(endpoint + `/site/${siteId}/energy?`+new URLSearchParams({
       api_key: apiKey!,
