@@ -9,10 +9,15 @@ function DayProductionChart() {
     });
 
     useEffect(() => {
-        fetch('dataset.json')  // Adjust the path as necessary
+        let currentDay = "2024-05-14";
+        fetch('http://localhost:3333/api/electricity?'+new URLSearchParams({
+            startDate: currentDay,
+            endDate: currentDay,
+            timeUnit: "HOUR",
+          }))
             .then(response => response.json())
             .then(data => {
-                const dayValues = data.energy.values.filter(entry => entry.date.startsWith("2024-05-14"));
+                const dayValues = data.energy.values.filter(entry => entry.date.startsWith(currentDay));
 
                 // Transform the data into the format expected by the chart
                 const newData = {
