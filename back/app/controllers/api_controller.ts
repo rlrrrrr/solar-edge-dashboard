@@ -66,7 +66,6 @@ export default class ApiController {
     let endDate = ensureParam('endDate');
     if (!timeUnits.includes(timeUnit)) response.abort({ message: "Invalid time unit: "+timeUnit})
     let key = new CacheKey(startDate, endDate, timeUnit);
-    console.log(key.toString());
 
     // check if we have cached this request in the cache
     let value = cache.get(key.toString());
