@@ -3,10 +3,10 @@ import Title from "./title"
 export default function HorizontalPresentation() {
     return (
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-            <div className="container grid gap-8 px-4 md:px-6 lg:grid-cols-4 xl:grid-cols-4">
+            <div className="container grid gap-8 px-4 md:px-6 lg:grid-cols-5 xl:grid-cols-5">
                 <div className="grid gap-4">
                     <BotIcon className="h-12 w-12 text-primary" />
-                    <Title variant='tertiary'>Robotic Assistance</Title>
+                    <Title variant='tertiary'>Internet par la Lumière (LiFi) </Title>
                     <Paragraph variant="tertiary">
                         Our advanced robots navigate the aisles, restocking shelves and assisting customers with their shopping
                         needs.
@@ -14,7 +14,7 @@ export default function HorizontalPresentation() {
                 </div>
                 <div className="grid gap-4">
                     <RadarIcon className="h-12 w-12 text-primary" />
-                    <Title variant='tertiary'>RFID Technology</Title>
+                    <Title variant='tertiary'>Bornes RFID</Title>
                     <Paragraph variant="tertiary">
                         RFID tags on our products allow for seamless inventory management and checkout, reducing wait times and
                         improving efficiency.
@@ -22,7 +22,7 @@ export default function HorizontalPresentation() {
                 </div>
                 <div className="grid gap-4">
                     <WifiIcon className="h-12 w-12 text-primary" />
-                    <Title variant='tertiary'>LiFi Connectivity</Title>
+                    <Title variant='tertiary'>Diffuseur de Parfum</Title>
                     <Paragraph variant="tertiary">
                         Our store utilizes LiFi technology, providing high-speed, secure internet access throughout the
                         supermarket.
@@ -30,10 +30,17 @@ export default function HorizontalPresentation() {
                 </div>
                 <div className="grid gap-4">
                     <VideoIcon className="h-12 w-12 text-primary" />
-                    <Title variant='tertiary'>VLC Navigation</Title>
+                    <Title variant='tertiary'>Capteur de CO2</Title>
                     <Paragraph variant="tertiary">
                         Visible Light Communication (VLC) guides customers through the store, providing real-time information and
                         personalized recommendations.
+                    </Paragraph>
+                </div>
+                <div className="grid gap-4">
+                    <VideoIcon className="h-12 w-12 text-primary" />
+                    <Title variant='tertiary'>Dalles Acoustiques</Title>
+                    <Paragraph variant="tertiary">
+                        Améliorent l'acoustique de l'espace, réduisant les nuisances sonores et créant un environnement propice à la concentration et à l'apprentissage.
                     </Paragraph>
                 </div>
             </div>
