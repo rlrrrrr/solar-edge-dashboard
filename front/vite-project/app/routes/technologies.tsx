@@ -18,8 +18,8 @@ export default function Component() {
         <Section
           title='Venez Expérimenter le Futur des Supermarché'
           text="Ces technologies sont non seulement étudiées mais aussi mises en œuvre par les étudiants dans le cadre de leurs projets pédagogiques, leur offrant une expérience pratique inestimable. Nous vous invitons à venir découvrir le Magasin Connecté 4.0, où innovation et apprentissage se rencontrent pour façonner l'avenir des technologies et des énergies renouvelables."
-          btnValueBlack='Learn More'
-          btnValueWhite='schedule a tour'
+          btnValueBlack='Nous rendre visite'
+          btnValueWhite='Efficacité des Panneaux Solaires'
           flexDirection={false}
         />
       </div>
