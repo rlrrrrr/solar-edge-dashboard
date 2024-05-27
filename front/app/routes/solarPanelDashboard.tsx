@@ -6,12 +6,14 @@ import ProductionChart from "components/ui/productionChart";
 import GasEmissionChart from "components/ui/gasEmissionsChart";
 import AvgProductionChart from "components/ui/avgProductionChart";
 import DayProductionChart from "components/ui/dayProductionChart";
+import { DatePickerWithRange } from "components/ui/datePicker";
 
 export default function Component() {
     return (
         <>
             <div className="flex min-h-screen flex-col">
               <Title supClass="mb-10">Dashboard : panneaux solaires</Title>
+                < DatePickerWithRange />
                 <main className="flex-1 bg-gray-100 py-8 px-6">
                     <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         <DashboardCard title="graphe 1">
