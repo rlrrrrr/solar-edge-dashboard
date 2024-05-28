@@ -1,18 +1,21 @@
 import { HttpContext } from '@adonisjs/core/http'
 import env from '#start/env'
 import logger from '@adonisjs/core/services/logger';
-import { log } from 'console';
 
 const timeUnits = ["QUARTER_OF_AN_HOUR", "HOUR", "DAY", "WEEK", "MONTH", "YEAR"];
 
 type CacheKeyStr = string;
 class CacheKey {
-  private startDate: string;
-  private endDate: string;
-  private timeUnit: string;
+  // these values are used by toString()
+  // @ts-ignore
+  private _startDate: string;
+  // @ts-ignore
+  private _endDate: string;
+  // @ts-ignore
+  private _timeUnit: string;
   constructor(startDate: string, endDate: string, timeUnit: string) {
-    this.startDate = startDate;
-    this.timeUnit = timeUnit;
+    this._startDate = startDate;
+    this._timeUnit = timeUnit;
 
     let currentDay = new Date().toISOString().split('T')[0];
     let endDay = new Date(endDate).toISOString().split('T')[0];
@@ -27,9 +30,9 @@ class CacheKey {
       flooredTime.setSeconds(0);
       flooredTime.setMilliseconds(0);
 
-      this.endDate = flooredTime.toISOString();
+      this._endDate = flooredTime.toISOString();
     } else {
-      this.endDate = endDate;
+      this._endDate = endDate;
     }
   }
 
@@ -76,7 +79,7 @@ export default class ApiController {
     }
 
     logger.info(`Sending SolarEdge request with start date ${startDate}, end date ${endDate}, time unit ${timeUnit}`);
-    debug.info(`(Wanted key is ${key.toString()})`);
+    logger.debug(`(Wanted key is ${key.toString()})`);
     // make request to SolarEdge API
     let resp = await fetch(endpoint + `/site/${siteId}/energy?`+new URLSearchParams({
       api_key: apiKey!,
@@ -90,7 +93,7 @@ export default class ApiController {
       return;
     }
 
-    let json = await resp.json();
+    let json = await resp.json() as JSON;
     // set cache key
     cache.set(key.toString(), json);
 
