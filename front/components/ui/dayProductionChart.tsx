@@ -12,6 +12,9 @@ function DayProductionChart() {
         fetch('dataset.json')  // Adjust the path as necessary
             .then(response => response.json())
             .then(data => {
+                // Retrieve Date
+                //console.log(sessionStorage.getItem('dateRange'))
+                // END Retrieve Date
                 const dayValues = data.energy.values.filter(entry => entry.date.startsWith("2024-05-14"));
 
                 // Transform the data into the format expected by the chart

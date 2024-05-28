@@ -1,26 +1,37 @@
 "use client"
 
-import * as React from "react"
-import { addDays, format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
-import { DateRange } from "react-day-picker"
+import * as React from "react";
+import { addDays, format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+import { DateRange } from "react-day-picker";
 
-import { cn } from "lib/utils"
-import { Button } from "components/ui/button"
-import { Calendar } from "components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "components/ui/popover"
+import { cn } from "lib/utils";
+import { Button } from "components/ui/button";
+import { Calendar } from "components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "components/ui/popover";
 
 export function DatePickerWithRange({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
-  })
+  const [date, setDate] = React.useState<DateRange | undefined>(() => {
+    // Safely access session storage only on the client side
+    if (typeof window !== 'undefined') {
+      const storedDateRange = sessionStorage.getItem('dateRange');
+      return storedDateRange ? JSON.parse(storedDateRange) : {
+        from: new Date(2022, 0, 20),
+        to: addDays(new Date(2022, 0, 20), 20),
+      };
+    }
+    return undefined;
+  });
+
+  // Update session storage whenever the date range changes, on the client side
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('dateRange', JSON.stringify(date));
+      //console.log(sessionStorage.getItem('dateRange'))
+    }
+  }, [date]);
 
   return (
     <div className={cn("grid gap-2", className)}>
@@ -61,5 +72,5 @@ export function DatePickerWithRange({
         </PopoverContent>
       </Popover>
     </div>
-  )
+  );
 }
