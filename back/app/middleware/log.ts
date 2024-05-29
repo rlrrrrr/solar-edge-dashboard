@@ -8,7 +8,7 @@ export default class LogMiddleware {
     ctx: HttpContext,
     next: NextFn,
   ) {
-    let ret = next();
+    let ret = await next();
     logger.debug(ctx.response.getStatus() + " " + ctx.request.method() + " " + ctx.request.url());
 
     return ret;
