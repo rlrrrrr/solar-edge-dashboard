@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import ChartComponent from './chart';
 import { DateRange } from 'react-day-picker';
+import { dateRangeToAPIStr } from '~/routes/solarPanelDashboard';
 
 interface ProductionChartProps {
     className?: string;
     date: DateRange;
 }
 
-function ProductionChart({date}: ProductionChartProps) {
+function ProductionChart({ date }: ProductionChartProps) {
     // Initialize state for chart data
     const [chartData, setChartData] = useState({
         labels: [],
@@ -17,10 +18,9 @@ function ProductionChart({date}: ProductionChartProps) {
     useEffect(() => {
 
         if (!date.from || !date.to) return;
-        const startDate = date.from.toISOString().split('T')[0];
-        const endDate = date.to.toISOString().split('T')[0];
-        const url = `http://localhost:3333/api/electricity?startDate=${startDate}&endDate=${endDate}&timeUnit=HOUR`;
-        
+        const [startDate, endDate] = dateRangeToAPIStr(date)
+        const url = `http://localhost:3333/api/electricity?startDate=${startDate}&endDate=${endDate}&timeUnit=DAY`;
+
         fetch(url)  // Adjust the path as necessary
             .then(response => response.json())
             .then(data => {

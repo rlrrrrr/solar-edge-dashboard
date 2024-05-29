@@ -11,6 +11,13 @@ import React from "react";
 import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
 
+export function dateRangeToAPIStr(range: DateRange): [string, string] {
+  if (!range.from || !range.to) throw new Error("Invalid date range");
+  const startDate = range.from.toISOString().split('T')[0];
+  const endDate = range.to.toISOString().split('T')[0];
+  return [startDate, endDate];
+}
+
 export default function Component() {
 
     const [date, setDate] = React.useState<DateRange>({
