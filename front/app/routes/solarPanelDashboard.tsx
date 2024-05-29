@@ -14,8 +14,8 @@ import { addDays } from "date-fns";
 export default function Component() {
 
     const [date, setDate] = React.useState<DateRange>({
-      from: new Date(2022, 0, 20),
-      to: addDays(new Date(2022, 0, 20), 20),
+      from: addDays(new Date(), -32),
+      to: addDays(new Date(), 2),
     })
 
     return (
