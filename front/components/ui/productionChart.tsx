@@ -39,7 +39,7 @@ function ProductionChart({ date }: ProductionChartProps) {
                 setChartData(newData);
             })
             .catch(error => console.error('Failed to load data:', error));
-    }, []); // Empty dependency array ensures this effect only runs once
+    }, [date]);
 
     const chartOptions = {
         scales: {
