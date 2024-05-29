@@ -21,13 +21,13 @@ const OpeningTimeTable = () => {
                             <TableRow key={time.day}>
                                 <TableCell>{time.day}</TableCell>
                                 <TableCell>
-                                    {time.morningStart && time.morningEnd
-                                        ? `${time.morningStart} - ${time.morningEnd}`
-                                        : 'Fermé le matin'}
+                                    {time.morningClosed ? 'Fermé le matin' : (
+                                      `${time.morningStart} - ${time.morningEnd}`
+                                    )}
                                     <br />
-                                    {time.eveningStart && time.eveningEnd
-                                        ? `${time.eveningStart} - ${time.eveningEnd}`
-                                        : 'Fermé le soir'}
+                                    {time.eveningClosed ? 'Fermé le soir' : (
+                                      `${time.eveningStart} - ${time.eveningEnd}`
+                                    )}
                                 </TableCell>
                             </TableRow>
                         ))}

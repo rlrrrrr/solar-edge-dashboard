@@ -6,6 +6,8 @@ interface OpeningHour {
   morningEnd: string;
   eveningStart: string;
   eveningEnd: string;
+  morningClosed?: boolean; // Added morningClosed attribute
+  eveningClosed?: boolean; // Added eveningClosed attribute
 }
 
 interface OpeningHoursState {
