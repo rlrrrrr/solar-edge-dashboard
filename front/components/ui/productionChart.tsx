@@ -15,7 +15,13 @@ function ProductionChart({date}: ProductionChartProps) {
     });
 
     useEffect(() => {
-        fetch('dataset.json')  // Adjust the path as necessary
+
+        if (!date.from || !date.to) return;
+        const startDate = date.from.toISOString().split('T')[0];
+        const endDate = date.to.toISOString().split('T')[0];
+        const url = `http://localhost:3333/api/electricity?startDate=${startDate}&endDate=${endDate}&timeUnit=HOUR`;
+        
+        fetch(url)  // Adjust the path as necessary
             .then(response => response.json())
             .then(data => {
                 // Transform the data into the format expected by the chart
