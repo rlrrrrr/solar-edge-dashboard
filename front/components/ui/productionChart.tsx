@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import ChartComponent from './chart';
+import { DateRange } from 'react-day-picker';
 
-function ProductionChart() {
+interface ProductionChartProps {
+    className?: string;
+    date: DateRange;
+}
+
+function ProductionChart({date}: ProductionChartProps) {
     // Initialize state for chart data
     const [chartData, setChartData] = useState({
         labels: [],

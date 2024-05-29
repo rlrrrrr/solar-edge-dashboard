@@ -7,20 +7,29 @@ import GasEmissionChart from "components/ui/gasEmissionsChart";
 import AvgProductionChart from "components/ui/avgProductionChart";
 import DayProductionChart from "components/ui/dayProductionChart";
 import { DatePickerWithRange } from "components/ui/datePicker";
+import React from "react";
+import { DateRange } from "react-day-picker";
+import { addDays } from "date-fns";
 
 export default function Component() {
+
+    const [date, setDate] = React.useState<DateRange>({
+      from: new Date(2022, 0, 20),
+      to: addDays(new Date(2022, 0, 20), 20),
+    })
+
     return (
         <>
             <div className="flex min-h-screen flex-col">
               <Title supClass="mb-10">Dashboard : panneaux solaires</Title>
-                < DatePickerWithRange />
+                < DatePickerWithRange date = {date} setDate = {setDate} />
                 <main className="flex-1 bg-gray-100 py-8 px-6">
                     <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         <DashboardCard title="graphe 1">
-                            <ProductionChart />
+                            <ProductionChart date = { date } />
                         </DashboardCard>
                         <DashboardCard title="graphe 2">
-                            <GasEmissionChart />
+                            <GasEmissionChart date = { date } />
                         </DashboardCard>
                         <DashboardCard title="statut">
                             <div className="grid grid-cols-2 gap-4">
@@ -35,10 +44,10 @@ export default function Component() {
                             </div>
                         </DashboardCard>
                         <DashboardCard title="graphe 3">
-                            <AvgProductionChart />
+                            <AvgProductionChart date = { date } />
                         </DashboardCard>
                         <DashboardCard title="graphe 4">
-                            <DayProductionChart />
+                            <DayProductionChart date = { date } />
                         </DashboardCard>
                         <DashboardCard title="battery">
                             <div className="grid grid-cols-2 gap-4">

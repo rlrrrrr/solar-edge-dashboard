@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import ChartComponent from './chart';
+import { DateRange } from 'react-day-picker';
 
-function DayProductionChart() {
+interface DayProductionChartProps {
+    className?: string;
+    date: DateRange;
+}
+
+function DayProductionChart({date}: DayProductionChartProps) {
     const [chartData, setChartData] = useState({
         labels: [],
         datasets: []
