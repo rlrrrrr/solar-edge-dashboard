@@ -5,7 +5,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-
+import {ManifestLink, useSWEffect} from "@remix-pwa/sw";
 import Navbar from "components/ui/navbar"
 import Footer from "components/ui/footer";
 
@@ -17,12 +17,14 @@ export const links: LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  useSWEffect()
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        <ManifestLink manifestUrl="/manifest.webmanifest" />
         <Links />
       </head>
       <body>
