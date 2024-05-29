@@ -1,7 +1,10 @@
-import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "components/ui/table"
-import Title from "./title"
+import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "components/ui/table";
+import Title from "./title";
+import { useOpeningHoursStore } from '../../store/openingHoursStore';
 
-export default function OpeningTimeTable() {
+const OpeningTimeTable = () => {
+    const { openingHours } = useOpeningHoursStore();
+
     return (
         <div className="space-y-2">
             <Title variant='secondary'>Nos horaires</Title>
@@ -14,37 +17,25 @@ export default function OpeningTimeTable() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow>
-                            <TableCell>Lundi</TableCell>
-                            <TableCell>9h - 18h</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Mardi</TableCell>
-                            <TableCell>9h - 18h</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Mercredi</TableCell>
-                            <TableCell>9h - 18h</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Jeudi</TableCell>
-                            <TableCell>9h - 18h</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Vendredi</TableCell>
-                            <TableCell>9h - 18h</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Samedi</TableCell>
-                            <TableCell>Fermé</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Dimanche</TableCell>
-                            <TableCell>Fermé</TableCell>
-                        </TableRow>
+                        {openingHours.map((time) => (
+                            <TableRow key={time.day}>
+                                <TableCell>{time.day}</TableCell>
+                                <TableCell>
+                                    {time.morningStart && time.morningEnd
+                                        ? `${time.morningStart} - ${time.morningEnd}`
+                                        : 'Fermé le matin'}
+                                    <br />
+                                    {time.eveningStart && time.eveningEnd
+                                        ? `${time.eveningStart} - ${time.eveningEnd}`
+                                        : 'Fermé le soir'}
+                                </TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </div>
         </div>
-    )
-}
+    );
+};
+
+export default OpeningTimeTable;
