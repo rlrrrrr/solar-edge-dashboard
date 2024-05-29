@@ -2,12 +2,7 @@ import { useEffect, useState } from 'react';
 import ChartComponent from './chart';
 import { DateRange } from 'react-day-picker';
 
-interface AvgProductionChartProps {
-    className?: string;
-    date: DateRange;
-}
-
-function AvgProductionChart({date}: AvgProductionChartProps) {
+function AvgProductionChart() {
     // Initialize state for chart data
     const [chartData, setChartData] = useState({
         labels: [],

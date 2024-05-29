@@ -3,12 +3,7 @@ import { format } from 'date-fns';
 import ChartComponent from './chart';
 import { DateRange } from 'react-day-picker';
 
-interface DayProductionChartProps {
-    className?: string;
-    date: DateRange;
-}
-
-function DayProductionChart({date}: DayProductionChartProps) {
+function DayProductionChart() {
     const [chartData, setChartData] = useState({
         labels: [],
         datasets: []

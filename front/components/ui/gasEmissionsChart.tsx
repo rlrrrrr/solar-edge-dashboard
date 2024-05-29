@@ -2,12 +2,7 @@ import { useEffect, useState } from 'react';
 import ChartComponent from './chart';
 import { DateRange } from 'react-day-picker';
 
-interface GasEmissionChartProps {
-    className?: string;
-    date: DateRange;
-}
-
-function GasEmissionChart({date}: GasEmissionChartProps) {
+function GasEmissionChart() {
     // Initialize state for chart data
     const [chartData, setChartData] = useState({
         labels: [],

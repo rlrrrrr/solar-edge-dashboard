@@ -29,7 +29,7 @@ export default function Component() {
                             <ProductionChart date = { date } />
                         </DashboardCard>
                         <DashboardCard title="graphe 2">
-                            <GasEmissionChart date = { date } />
+                            <GasEmissionChart/>
                         </DashboardCard>
                         <DashboardCard title="statut">
                             <div className="grid grid-cols-2 gap-4">
@@ -44,10 +44,10 @@ export default function Component() {
                             </div>
                         </DashboardCard>
                         <DashboardCard title="graphe 3">
-                            <AvgProductionChart date = { date } />
+                            <AvgProductionChart/>
                         </DashboardCard>
                         <DashboardCard title="graphe 4">
-                            <DayProductionChart date = { date } />
+                            <DayProductionChart/>
                         </DashboardCard>
                         <DashboardCard title="battery">
                             <div className="grid grid-cols-2 gap-4">
