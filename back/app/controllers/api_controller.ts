@@ -8,16 +8,12 @@ const timeUnits = ["QUARTER_OF_AN_HOUR", "HOUR", "DAY", "WEEK", "MONTH", "YEAR"]
 
 type CacheKeyStr = string;
 class CacheKey {
-  // these values are used by toString()
-  // @ts-ignore
-  private _startDate: string;
-  // @ts-ignore
-  private _endDate: string;
-  // @ts-ignore
-  private _timeUnit: string;
+  private startDate: string;
+  private endDate: string;
+  private timeUnit: string;
   constructor(startDate: string, endDate: string, timeUnit: string) {
-    this._startDate = startDate;
-    this._timeUnit = timeUnit;
+    this.startDate = startDate;
+    this.timeUnit = timeUnit;
 
     let currentDay = new Date().toISOString().split('T')[0];
     let endDay = new Date(endDate).toISOString().split('T')[0];
@@ -32,14 +28,14 @@ class CacheKey {
       flooredTime.setSeconds(0);
       flooredTime.setMilliseconds(0);
 
-      this._endDate = flooredTime.toISOString();
+      this.endDate = flooredTime.toISOString();
     } else {
-      this._endDate = endDate;
+      this.endDate = endDate;
     }
   }
 
   toString(): CacheKeyStr {
-    return JSON.stringify(this);
+    return this.startDate + "|" + this.endDate + "|" + this.timeUnit;
   }
 }
 
