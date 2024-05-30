@@ -32,5 +32,6 @@ router.post('/login', [SessionController, 'store'])
 router.post('/signin', [UsersController, 'store'])
 
 router.get('/api/electricity', [ApiController, 'electricity'])
+router.get('/api/co2Production', [ApiController, 'co2Production'])
 
 router.get('/api/daily_solar_radiation', [ApiController, 'daily_solar_radiation'])

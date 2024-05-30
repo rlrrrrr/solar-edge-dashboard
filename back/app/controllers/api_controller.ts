@@ -1,6 +1,7 @@
 import { HttpContext } from '@adonisjs/core/http'
 import env from '#start/env'
 import logger from '@adonisjs/core/services/logger';
+import { Duration } from 'luxon';
 
 const timeUnits = ["QUARTER_OF_AN_HOUR", "HOUR", "DAY", "WEEK", "MONTH", "YEAR"];
 
@@ -68,6 +69,30 @@ let weatherbitEndpoint = env.get('WEATHERBIT_ENDPOINT');
 if (!weatherbitEndpoint) throw new Error("Missing Weatherbit endpoint in env");
 else if (!weatherbitEndpoint?.startsWith('http://')) weatherbitEndpoint = 'https://' + weatherbitEndpoint;
 
+class CachedValue<T> {
+  private ttl: Duration;
+  private lastSet: Date | null = null;
+  private value: T | null = null;
+
+  constructor(ttl: Duration) {
+    this.ttl = ttl;
+  }
+
+  set(value: T) {
+    this.lastSet = new Date();
+    this.value = value;
+  }
+
+  get(): T | null {
+    if (this.lastSet && this.lastSet.getTime() + this.ttl.as("milliseconds") < Date.now()) {
+      return null;
+    }
+    return this.value;
+  }
+}
+
+let co2Cache: CachedValue<JSON> = new CachedValue<JSON>(Duration.fromObject({ hours: 1 }));
+
 function ensureParam(request: any, response: any, key: string) {
   let val = request.all()[key];
   if (val) return val;
@@ -112,6 +137,31 @@ export default class ApiController {
 
     response.header('X-Cache', 'false');
     response.send(json);
+  }
+
+  async co2Production({ response }: HttpContext) {
+    let value = co2Cache.get();
+    if (value === null) {
+      response.header('X-Cache', 'false');
+
+      logger.info(`Sending SolarEdge request for CO2`);
+      let resp = await fetch(endpoint + `/site/${siteId}/envBenefits?`+new URLSearchParams({
+        api_key: apiKey!,
+      }));
+
+      if (!resp.ok) {
+        response.status(500).send(`Request to SolarEdge failed: ${resp.statusText} (Status code ${resp.status})`);
+        return;
+      }
+
+      value = await resp.json() as JSON;
+      co2Cache.set(value);
+
+    } else {
+      response.header('X-Cache', 'true');
+    }
+
+    response.send(value);
   }
 
   async daily_solar_radiation({ request, response }: HttpContext) {
