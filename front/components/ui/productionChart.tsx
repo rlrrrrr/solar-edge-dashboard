@@ -11,34 +11,62 @@ interface ProductionChartProps {
 function ProductionChart({ date }: ProductionChartProps) {
     // Initialize state for chart data
     const [chartData, setChartData] = useState({
-        labels: [],
-        datasets: []
+        labels: [] as string[],
+        datasets: [] as JSON[]
     });
 
     useEffect(() => {
+        const foo = async () => {
 
-        if (!date.from || !date.to) return;
-        const [startDate, endDate] = dateRangeToAPIStr(date)
-        const url = `http://localhost:3333/api/electricity?startDate=${startDate}&endDate=${endDate}&timeUnit=DAY`;
+            if (!date.from || !date.to) return;
+            const [startDate, endDate] = dateRangeToAPIStr(date)
+            const url = `http://localhost:3333/api/electricity?startDate=${startDate}&endDate=${endDate}&timeUnit=DAY`;
 
-        fetch(url)  // Adjust the path as necessary
-            .then(response => response.json())
-            .then(data => {
-                // Transform the data into the format expected by the chart
-                const newData = {
-                    labels: data.energy.values.map(entry => entry.date),
-                    datasets: [{
-                        label: "Energy production (Wh)",
+            let newData = {
+                labels: [] as string[],
+                datasets: [] as JSON[]
+            }
+
+            let req1 = fetch(url)  // Adjust the path as necessary
+                .then(response => response.json())
+                .then(data => {
+                    // Transform the data into the format expected by the chart
+                    newData.labels = data.energy.values.map(entry => entry.date);
+                    newData.datasets.push({
+                        label: "Theorical production (Wh)",
                         xAxisID: 'xAxis0',
                         data: data.energy.values.map(entry => entry.value),
                         fill: false,
                         borderColor: 'rgb(75, 192, 192)',
                         tension: 0.1
-                    }]
-                };
-                setChartData(newData);
-            })
-            .catch(error => console.error('Failed to load data:', error));
+                    });
+                })
+                .catch(error => console.error('Failed to load data:', error));
+            
+            const radiation_url = `http://localhost:3333/api/daily_solar_radiation?startDate=${startDate}&endDate=${endDate}`;
+
+            let req2 = fetch(radiation_url)
+                .then(response => response.json())
+                .then(data => {
+                    // Transform the data into the format expected by the chart
+                    newData.datasets.push({
+                        label: "Energy production (Wh)",
+                        xAxisID: 'xAxis0',
+                        data: data.data.map(entry => entry.solar_rad),
+                        fill: false,
+                        borderColor: 'rgb(175, 92, 192)',
+                        tension: 0.1
+                    });
+                })
+                .catch(error => console.error('Failed to load data: ', error));
+            
+            console.log(newData);
+            await req1;
+            await req2;
+
+            setChartData(newData);
+        };
+        foo();
     }, [date]);
 
     const chartOptions = {
