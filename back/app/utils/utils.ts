@@ -26,8 +26,8 @@ export class CachedValue<T> {
 export class TimeSerieCache<T> {
   private cache: Map<CacheKeyStr, T> = new Map();
   
-  get(key: CacheKeyStr): T | undefined {
-    return this.cache.get(key);
+  get(key: CacheKeyStr): T | null {
+    return this.cache.get(key) || null;
   }
 
   set(key: CacheKeyStr, value: T) {
