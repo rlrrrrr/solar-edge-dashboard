@@ -39,10 +39,10 @@ export type CacheKeyStr = string;
 export class CacheKey {
   private startDate: string;
   private endDate: string;
-  private timeUnit: string;
-  constructor(startDate: string, endDate: string, timeUnit: string) {
+  private others: string[];
+  constructor(startDate: string, endDate: string, ...others: string[]) {
     this.startDate = startDate;
-    this.timeUnit = timeUnit;
+    this.others = others;
 
     let currentDay = new Date().toISOString().split('T')[0];
     let endDay = new Date(endDate).toISOString().split('T')[0];
@@ -64,6 +64,10 @@ export class CacheKey {
   }
 
   toString(): CacheKeyStr {
-    return this.startDate + "|" + this.endDate + "|" + this.timeUnit;
+    let s = this.startDate + "|" + this.endDate;
+    for (let other of this.others) {
+      s += "|" + other;
+    }
+    return s;
   }
 }
