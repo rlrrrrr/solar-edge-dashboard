@@ -12,7 +12,7 @@ export default {
           DEFAULT: '#0073A8', 
         },
         accent: {
-          DEFAULT: '#F9A825', // Orange
+          DEFAULT: '#0073A8',
         },
         neutral: {
           light: '#E5E5E5',   // Light Grey
