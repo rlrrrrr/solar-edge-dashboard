@@ -33,6 +33,7 @@ else if (!weatherbitEndpoint?.startsWith('http://')) weatherbitEndpoint = 'https
 
 let co2Cache: CachedValue<JSON> = new CachedValue<JSON>(Duration.fromObject({ hours: 1 }));
 var electricityCache = new TimeSerieCache<JSON>();
+var energyDetailsCache = new TimeSerieCache<JSON>();
 
 function ensureParam(request: any, response: any, key: string) {
   let val = request.all()[key];
@@ -97,6 +98,44 @@ export default class ApiController {
 
       value = await resp.json() as JSON;
       co2Cache.set(value);
+
+    } else {
+      response.header('X-Cache', 'true');
+    }
+
+    response.send(value);
+  }
+
+  async energyDetails({ request, response }: HttpContext) {
+    // caclulate cache key
+    let meters = ensureParam(request, response, 'meters');
+    let timeUnit = ensureParam(request, response, 'timeUnit');
+    let startDate = ensureParam(request, response, 'startDate');
+    let endDate = ensureParam(request, response, 'endDate');
+    if (!timeUnits.includes(timeUnit)) response.abort({ message: "Invalid time unit: " + timeUnit })
+    let key = new CacheKey(startDate, endDate, timeUnit, meters);
+  
+    let value = energyDetailsCache.get(key.toString());
+    if (value === null) {
+      response.header('X-Cache', 'false');
+
+      logger.info(`Sending SolarEdge request for energy details`);
+      let resp = await fetch(endpoint + `/site/${siteId}/energyDetails?`+new URLSearchParams({
+        api_key: apiKey!,
+        startTime: startDate+" 00:00:00",
+        endTime: endDate+" 23:59:59",
+        timeUnit: timeUnit,
+        meters: meters,
+      }));
+
+      if (!resp.ok) {
+        response.status(500).send(`Request to SolarEdge failed: ${resp.statusText} (Status code ${resp.status})`);
+        return;
+      }
+
+      value = await resp.json() as JSON;
+      console.log(value);
+      energyDetailsCache.set(key.toString(), value);
 
     } else {
       response.header('X-Cache', 'true');
