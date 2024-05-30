@@ -2,7 +2,7 @@ import { HttpContext } from '@adonisjs/core/http'
 import env from '#start/env'
 import logger from '@adonisjs/core/services/logger';
 import { Duration } from 'luxon';
-import { CacheKey, CacheKeyStr, CachedValue } from '#utils/utils';
+import { CacheKey, CachedValue, TimeSerieCache } from '#utils/utils';
 
 const timeUnits = ["QUARTER_OF_AN_HOUR", "HOUR", "DAY", "WEEK", "MONTH", "YEAR"];
 
@@ -23,7 +23,6 @@ let endpoint = env.get('SOLAREDGE_ENDPOINT');
 if (!endpoint) throw new Error("Missing SolarEdge Endpoint in env");
 else if (!endpoint?.startsWith('http://')) endpoint = 'https://' + endpoint;
 
-var cache: Map<CacheKeyStr, JSON> = new Map();
 
 let weatherbitApiKey = env.get('WEATHERBIT_APIKEY');
 if (!weatherbitApiKey) throw new Error("Missing Weatherbit API key in env");
@@ -33,6 +32,7 @@ if (!weatherbitEndpoint) throw new Error("Missing Weatherbit endpoint in env");
 else if (!weatherbitEndpoint?.startsWith('http://')) weatherbitEndpoint = 'https://' + weatherbitEndpoint;
 
 let co2Cache: CachedValue<JSON> = new CachedValue<JSON>(Duration.fromObject({ hours: 1 }));
+var electricityCache = new TimeSerieCache<JSON>();
 
 function ensureParam(request: any, response: any, key: string) {
   let val = request.all()[key];
@@ -50,7 +50,7 @@ export default class ApiController {
     let key = new CacheKey(startDate, endDate, timeUnit);
 
     // check if we have cached this request in the cache
-    let value = cache.get(key.toString());
+    let value = electricityCache.get(key.toString());
     if (value !== undefined) {
       response.header('X-Cache', 'true');
       response.send(value);
@@ -74,7 +74,7 @@ export default class ApiController {
 
     let json = await resp.json() as JSON;
     // set cache key
-    cache.set(key.toString(), json);
+    electricityCache.set(key.toString(), json);
 
     response.header('X-Cache', 'false');
     response.send(json);

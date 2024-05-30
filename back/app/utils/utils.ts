@@ -23,6 +23,17 @@ export class CachedValue<T> {
   }
 }
 
+export class TimeSerieCache<T> {
+  private cache: Map<CacheKeyStr, T> = new Map();
+  
+  get(key: CacheKeyStr): T | undefined {
+    return this.cache.get(key);
+  }
+
+  set(key: CacheKeyStr, value: T) {
+    this.cache.set(key, value);
+  }
+}
 
 export type CacheKeyStr = string;
 export class CacheKey {
