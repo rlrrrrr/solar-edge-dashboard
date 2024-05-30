@@ -43,6 +43,12 @@ class CacheKey {
 
 
 // retrieve info from env, and crash if not available
+let latitude = env.get('LATITUDE');
+if (!latitude) throw new Error("Missing latitude in env");
+
+let longitude = env.get('LONGITUDE');
+if (!longitude) throw new Error("Missing longitude in env");
+
 let apiKey = env.get('SOLAREDGE_APIKEY');
 if (!apiKey) throw new Error("Missing SolarEdge API key in env");
 
@@ -55,19 +61,26 @@ else if (!endpoint?.startsWith('http://')) endpoint = 'https://' + endpoint;
 
 var cache: Map<CacheKeyStr, JSON> = new Map();
 
+let weatherbitApiKey = env.get('WEATHERBIT_APIKEY');
+if (!weatherbitApiKey) throw new Error("Missing Weatherbit API key in env");
+
+let weatherbitEndpoint = env.get('WEATHERBIT_ENDPOINT');
+if (!weatherbitEndpoint) throw new Error("Missing Weatherbit endpoint in env");
+else if (!weatherbitEndpoint?.startsWith('http://')) weatherbitEndpoint = 'https://' + weatherbitEndpoint;
+
+function ensureParam(request: any, response: any, key: string) {
+  let val = request.all()[key];
+  if (val) return val;
+  else response.abort({ message: "Missing parameter: " + key });
+}
+
 export default class ApiController {
   async electricity({ request, response }: HttpContext) {
-    function ensureParam(key: string) {
-      let val = request.all()[key];
-      if (val) return val;
-      else response.abort({ message: "Missing parameter: "+key });
-    }
-
     // caclulate cache key
-    let timeUnit = ensureParam('timeUnit');
-    let startDate = ensureParam('startDate');
-    let endDate = ensureParam('endDate');
-    if (!timeUnits.includes(timeUnit)) response.abort({ message: "Invalid time unit: "+timeUnit})
+    let timeUnit = ensureParam(request, response, 'timeUnit');
+    let startDate = ensureParam(request, response, 'startDate');
+    let endDate = ensureParam(request, response, 'endDate');
+    if (!timeUnits.includes(timeUnit)) response.abort({ message: "Invalid time unit: " + timeUnit })
     let key = new CacheKey(startDate, endDate, timeUnit);
 
     // check if we have cached this request in the cache
@@ -99,5 +112,13 @@ export default class ApiController {
 
     response.header('X-Cache', 'false');
     response.send(json);
+  }
+
+  async daily_solar_radiation({ request, response }: HttpContext) {
+
+    let startDate = ensureParam(request, response, 'startDate');
+    let endDate = ensureParam(request, response, 'endDate');
+
+    logger.info(`Sending Weatherbit request with start date ${startDate}, end date ${endDate}`);
   }
 }
