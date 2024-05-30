@@ -2,6 +2,7 @@ import { HttpContext } from '@adonisjs/core/http'
 import env from '#start/env'
 import logger from '@adonisjs/core/services/logger';
 import { Duration } from 'luxon';
+import { CachedValue } from '#utils/utils';
 
 const timeUnits = ["QUARTER_OF_AN_HOUR", "HOUR", "DAY", "WEEK", "MONTH", "YEAR"];
 
@@ -68,28 +69,6 @@ if (!weatherbitApiKey) throw new Error("Missing Weatherbit API key in env");
 let weatherbitEndpoint = env.get('WEATHERBIT_ENDPOINT');
 if (!weatherbitEndpoint) throw new Error("Missing Weatherbit endpoint in env");
 else if (!weatherbitEndpoint?.startsWith('http://')) weatherbitEndpoint = 'https://' + weatherbitEndpoint;
-
-class CachedValue<T> {
-  private ttl: Duration;
-  private lastSet: Date | null = null;
-  private value: T | null = null;
-
-  constructor(ttl: Duration) {
-    this.ttl = ttl;
-  }
-
-  set(value: T) {
-    this.lastSet = new Date();
-    this.value = value;
-  }
-
-  get(): T | null {
-    if (this.lastSet && this.lastSet.getTime() + this.ttl.as("milliseconds") < Date.now()) {
-      return null;
-    }
-    return this.value;
-  }
-}
 
 let co2Cache: CachedValue<JSON> = new CachedValue<JSON>(Duration.fromObject({ hours: 1 }));
 
