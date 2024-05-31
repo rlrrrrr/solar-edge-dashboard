@@ -12,6 +12,7 @@ export default function Title({ variant = 'primary', children, supClass }: Title
     primary: "text-5xl font-bold",
     secondary: "text-3xl font-semibold",
     tertiary: "text-xl font-medium",
+    centered: "text-xl font-medium text-center"
   };
 
   const className = `${supClass} ${baseClass} ${variantClass[variant]}`;

@@ -254,7 +254,7 @@ const routes = {
     index: void 0,
     caseSensitive: void 0,
     hasLoader: false,
-    hasAction: false,
+    hasAction: true,
     hasWorkerLoader: false,
     hasWorkerAction: false,
     module: route7
@@ -265,8 +265,8 @@ const routes = {
     path: "panel",
     index: void 0,
     caseSensitive: void 0,
-    hasLoader: false,
-    hasAction: false,
+    hasLoader: true,
+    hasAction: true,
     hasWorkerLoader: false,
     hasWorkerAction: false,
     module: route8
