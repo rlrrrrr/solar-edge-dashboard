@@ -52,7 +52,7 @@ export default class ApiController {
 
     // check if we have cached this request in the cache
     let value = electricityCache.get(key.toString());
-    if (value !== undefined) {
+    if (value !== null) {
       response.header('X-Cache', 'true');
       response.send(value);
       return;
