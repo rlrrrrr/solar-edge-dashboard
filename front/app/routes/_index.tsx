@@ -2,6 +2,7 @@ import type { MetaFunction } from "@remix-run/node";
 import PartnerSection from "components/ui/partnerSection";
 import Section from "components/ui/section";
 import HeroSection from "components/ui/heroSection";
+import OpeningTimesSelector from "components/ui/selectOpeningTime";
 
 export const meta: MetaFunction = () => {
   return [
@@ -14,6 +15,7 @@ export const meta: MetaFunction = () => {
 export default function Home() {
   return (
       <>
+        <OpeningTimesSelector/>
         <HeroSection title={"Le Magasin Connecté 4.0"} paragraph={ "Une épicerie indépendante de l'IUT, gérée par une association d'étudiants pour les étudiants."} presentation={"une plateforme technologique de 150 m2 dédiée aux étudiants. "}/>
         <Section
             btnValueBlack="En savoir plus"
