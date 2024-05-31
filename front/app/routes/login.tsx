@@ -9,7 +9,8 @@ import {authCookie} from "~/auth";
 
 export async function action({request}: ActionFunctionArgs) {
   const formData: FormData = await request.formData();
-  const response = await fetch(process.env.API_URL, {
+  console.log(process.env.API_URL);
+  const response = await fetch(process.env.API_URL+"/login", {
     headers: {
       'Content-Type': 'application/json',
     },
