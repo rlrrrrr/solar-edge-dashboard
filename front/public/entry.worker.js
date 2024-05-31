@@ -155,10 +155,25 @@ const route8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   default: worker_runtime_default
 }, Symbol.toStringTag, { value: "Module" }));
 const assets = [
+  "/CNRFID.webp",
+  "/CO.webp",
+  "/DraculaTech.webp",
+  "/Eurofins_Scientific_logo.png",
+  "/Murati.webp",
+  "/ST.webp",
+  "/STID.webp",
+  "/STM.webp",
   "/co2.json",
+  "/connectWave.webp",
   "/dataset.json",
+  "/draculalight.webp",
   "/entry.worker.js",
+  "/exclamationLogo.webp",
   "/favicon.ico",
+  "/insiteo.png",
+  "/logoInconnu.webp",
+  "/lucibelRetail.png",
+  "/lucibelRetail.webp",
   "/solar-192.png",
   "/solar-512.png"
 ];
