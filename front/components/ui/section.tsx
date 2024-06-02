@@ -17,9 +17,9 @@ export default function Section({
   children?: React.ReactNode
 }) {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-8">
+    <section className="w-full py-12 md:py-24 lg:py-8 bg-gray-100 dark:bg-gray-800">
       <div className="container px-0">
-        <div className={`grid gap-6 lg:grid-cols-[1fr_550px] lg:gap-12 xl:grid-cols-[1fr_600px] ${flexDirection ? 'lg:grid-cols-[550px_1fr]' : ''}`}>
+        <div className={`grid gap-6 lg:grid-cols-[1fr_550px] lg:gap-12 xl:grid-cols-[1fr_600px] overflow-hidden rounded-lg border bg-background p-20 md:shadow-xl ${flexDirection ? 'lg:grid-cols-[550px_1fr]' : ''}`}>
           {imgSrc &&
             <img
               alt="Histoire de l'entreprise"
