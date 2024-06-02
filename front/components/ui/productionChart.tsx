@@ -33,9 +33,9 @@ function ProductionChart({ date }: ProductionChartProps) {
                     // Transform the data into the format expected by the chart
                     newData.labels = data.energy.values.map(entry => entry.date);
                     newData.datasets.push({
-                        label: "Theorical production (Wh)",
+                        label: "Energy production (kWh)",
                         xAxisID: 'xAxis0',
-                        data: data.energy.values.map(entry => entry.value),
+                        data: data.energy.values.map(entry => entry.value / 1000),
                         fill: false,
                         borderColor: 'rgb(75, 192, 192)',
                         tension: 0.1
@@ -50,9 +50,9 @@ function ProductionChart({ date }: ProductionChartProps) {
                 .then(data => {
                     // Transform the data into the format expected by the chart
                     newData.datasets.push({
-                        label: "Energy production (Wh)",
+                        label: "Theorical production (kWh)",
                         xAxisID: 'xAxis0',
-                        data: data.data.map(entry => entry.solar_rad),
+                        data: data.data.map(entry => entry.solar_rad * 130 / 1000),
                         fill: false,
                         borderColor: 'rgb(175, 92, 192)',
                         tension: 0.1
@@ -60,7 +60,6 @@ function ProductionChart({ date }: ProductionChartProps) {
                 })
                 .catch(error => console.error('Failed to load data: ', error));
             
-            console.log(newData);
             await req1;
             await req2;
 
