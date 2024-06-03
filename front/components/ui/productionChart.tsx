@@ -9,7 +9,6 @@ interface ProductionChartProps {
 }
 
 function ProductionChart({ date }: ProductionChartProps) {
-    // Initialize state for chart data
     const [chartData, setChartData] = useState({
         labels: [] as string[],
         datasets: [] as JSON[]
@@ -20,14 +19,14 @@ function ProductionChart({ date }: ProductionChartProps) {
 
             if (!date.from || !date.to) return;
             const [startDate, endDate] = dateRangeToAPIStr(date)
-            const url = `http://localhost:3333/api/electricity?startDate=${startDate}&endDate=${endDate}&timeUnit=DAY`;
+            const url = `http://localhost:3333/api/electricity?startDate=${startDate}&endDate=${endDate}&timeUnit=QUARTER_OF_AN_HOUR`;
 
             let newData = {
                 labels: [] as string[],
                 datasets: [] as JSON[]
             }
 
-            let req1 = fetch(url)  // Adjust the path as necessary
+            let req1 = fetch(url)  
                 .then(response => response.json())
                 .then(data => {
                     // Transform the data into the format expected by the chart
@@ -52,7 +51,7 @@ function ProductionChart({ date }: ProductionChartProps) {
                     newData.datasets.push({
                         label: "Theorical production (kWh)",
                         xAxisID: 'xAxis0',
-                        data: data.data.map(entry => entry.solar_rad * 130 / 1000),
+                        data: data.data.map(entry => entry.solar_rad * 130 / 1000 / 24),
                         fill: false,
                         borderColor: 'rgb(175, 92, 192)',
                         tension: 0.1

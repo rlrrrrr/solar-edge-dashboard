@@ -151,7 +151,7 @@ export default class ApiController {
 
     logger.info(`Sending Weatherbit request with start date ${startDate}, end date ${endDate}`);
     // make request to Weatherbit API
-    let resp = await fetch(weatherbitEndpoint + `/history/daily?` + new URLSearchParams({
+    let resp = await fetch(weatherbitEndpoint + `/history/subhourly?` + new URLSearchParams({
       key: weatherbitApiKey!,
       lat: latitude!,
       lon: longitude!,

@@ -6,6 +6,7 @@ import ProductionChart from "components/ui/productionChart";
 import GasEmissionChart from "components/ui/gasEmissionsChart";
 import AvgProductionChart from "components/ui/avgProductionChart";
 import DayProductionChart from "components/ui/dayProductionChart";
+import EnergyDataChart from "components/ui/energyDetailsChart";
 import { DatePickerWithRange } from "components/ui/datePicker";
 import React from "react";
 import { DateRange } from "react-day-picker";
@@ -28,48 +29,32 @@ export default function Component() {
     return (
         <>
             <div className="flex min-h-screen flex-col">
-              <Title supClass="mb-10">Dashboard : panneaux solaires</Title>
-                < DatePickerWithRange date = {date} setDate = {setDate} />
-                <main className="flex-1 bg-gray-100 py-8 px-6">
-                    <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
-                        <DashboardCard title="graphe 1">
-                            <ProductionChart date = { date } />
-                        </DashboardCard>
-                        <DashboardCard title="graphe 2">
-                            <GasEmissionChart/>
-                        </DashboardCard>
-                        <DashboardCard title="statut">
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <Title variant="tertiary">Production</Title>
-                                    <Paragraph variant="secondary">12.5 kW</Paragraph>
-                                </div>
-                                <div>
-                                    <Title variant="tertiary">Consumption</Title>
-                                    <Paragraph variant="secondary">9.2 kW</Paragraph>
-                                </div>
-                            </div>
-                        </DashboardCard>
-                        <DashboardCard title="graphe 3">
-                            <AvgProductionChart/>
-                        </DashboardCard>
-                        <DashboardCard title="graphe 4">
+              <Title supClass="mb-10">Dashboard de la journée: panneaux solaires</Title>
+                <div className="flex-1 bg-gray-100 py-8 px-6">
+                    <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-1 lg:grid-cols-1">
+                        <DashboardCard title="Production de cette journée">
                             <DayProductionChart/>
                         </DashboardCard>
-                        <DashboardCard title="battery">
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <Title variant="tertiary">Charge Level</Title>
-                                    <Paragraph variant="secondary">82%</Paragraph>
-                                </div>
-                                <div>
-                                    <Title variant="tertiary">Capacity</Title>
-                                    <Paragraph variant="secondary">12 kWh</Paragraph>
-                                </div>
-                            </div>
+                        <DashboardCard title="Histogramme des emissions de gaz depuis le debut">
+                            <GasEmissionChart/>
                         </DashboardCard>
                     </div>
-                </main>
+              </div>
+              <Title supClass="mb-10">Dashboard avec selection de date: panneaux solaires</Title>
+                < DatePickerWithRange date = {date} setDate = {setDate} />
+                <div className="flex-1 bg-gray-100 py-8 px-6">
+                    <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-1 lg:grid-cols-1">
+                        <DashboardCard title="Production">
+                            <ProductionChart date = { date } />
+                        </DashboardCard>
+                        <DashboardCard title="Production moyenne">
+                            <AvgProductionChart/>
+                        </DashboardCard>
+                        <DashboardCard title="Informations generales">
+                            <EnergyDataChart date = { date }/>
+                        </DashboardCard>
+                    </div>
+                </div>
             </div>
         </>
     )

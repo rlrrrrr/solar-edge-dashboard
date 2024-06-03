@@ -20,7 +20,7 @@ function GasEmissionChart() {
                 const newData = {
                         labels: ['CO2 (kg)', 'SO2 (kg)', 'NOx (kg)'],
                         datasets: [{
-                            label: 'Gas Emissions Saved',
+                            label: 'Gas Emissions',
                             data: [gasEmissions.co2, gasEmissions.so2, gasEmissions.nox],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
