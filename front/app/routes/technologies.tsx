@@ -11,6 +11,7 @@ export default function Component() {
           title='Technologies du Magasin Connecté 4.0'
           text="Le Magasin Connecté 4.0 est une plateforme unique qui intègre diverses technologies avancées pour offrir un environnement d'apprentissage pratique et innovant. Situé sur le campus de l'IUT de St Jérôme à Marseille, ce projet permet aux étudiants de se familiariser avec les dernières innovations technologiques et de les déployer dans un cadre réel."
           flexDirection={false}
+          imgSrc="./ledPanel.webp"
         />
 
         <HorizontalPresentation />
@@ -21,6 +22,7 @@ export default function Component() {
           btnValueBlack='Nous rendre visite'
           btnValueWhite='Efficacité des Panneaux Solaires'
           flexDirection={false}
+          imgSrc="./venezNousVoir.webp"
         />
       </div>
     </>

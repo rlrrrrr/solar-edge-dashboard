@@ -4,19 +4,14 @@ export default {
   content: ['./app/**/*.{js,jsx,ts,tsx}','./@/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
-      colors: {
-        primary: {
-          DEFAULT: '#002855', // Dark Blue  // Light Blue
-        },
-        secondary : {
-          DEFAULT: '#0073A8', 
-        },
-        accent: {
-          DEFAULT: '#F9A825', // Orange
-        },
-        neutral: {
-          light: '#E5E5E5',   // Light Grey
-          dark: '#4A4A4A',    // Dark Grey
+      animation: {
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+      },
+      keyframes: {
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
         },
       },
     },
