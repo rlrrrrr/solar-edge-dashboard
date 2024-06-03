@@ -1,25 +1,21 @@
-import type { Config } from 'tailwindcss'
+import type {Config} from 'tailwindcss'
 
 export default {
-  content: ['./app/**/*.{js,jsx,ts,tsx}','./@/**/*.{js,jsx,ts,tsx}'],
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          DEFAULT: '#002855', // Dark Blue  // Light Blue
+    content: ['./app/**/*.{js,jsx,ts,tsx}', './@/**/*.{js,jsx,ts,tsx}'],
+    theme: {
+        extend: {
+            animation: {
+                grid: "grid 15s linear infinite",
+            },
+            keyframes: {
+                grid: {
+                    "0%": {transform: "translateY(-50%)"},
+                    "100%": {transform: "translateY(0)"},
+                },
+                backgroundImage: {
+                    'radial-white-transparent': 'radial-gradient(circle, white, transparent)',
+                },
+            },
         },
-        secondary : {
-          DEFAULT: '#0073A8', 
-        },
-        accent: {
-          DEFAULT: '#F9A825', // Orange
-        },
-        neutral: {
-          light: '#E5E5E5',   // Light Grey
-          dark: '#4A4A4A',    // Dark Grey
-        },
-      },
-    },
-  },
-  plugins: [],
-} satisfies Config;
+        plugins: [],
+    } satisfies Config;
