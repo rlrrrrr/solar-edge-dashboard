@@ -150,5 +150,44 @@ export default class ApiController {
     let endDate = ensureParam(request, response, 'endDate');
 
     logger.info(`Sending Weatherbit request with start date ${startDate}, end date ${endDate}`);
+    // make request to Weatherbit API
+    let resp = await fetch(weatherbitEndpoint + `/history/daily?` + new URLSearchParams({
+      key: weatherbitApiKey!,
+      lat: latitude!,
+      lon: longitude!,
+      lang: 'fr',
+      start_date: startDate,
+      end_date: endDate,
+    }));
+
+    if (!resp.ok) {
+      response.status(500).send(`Request to Weatherbit failed: ${resp.statusText} (Status code ${resp.status})`);
+      return;
+    }
+
+    let json = await resp.json() as JSON;
+    response.send(json);
+  }
+
+  async hourly_prediction_solar_radiation({ request, response }: HttpContext) {
+
+    logger.info(`Sending Weatherbit request for 24h forecasts`);
+    // make request to Weatherbit API
+    let resp = await fetch(weatherbitEndpoint + `/forecast/hourly?` + new URLSearchParams({
+      key: weatherbitApiKey!,
+      lat: latitude!,
+      lon: longitude!,
+      lang: 'fr',
+      hours: '24',  // One day
+    }));
+
+    if (!resp.ok) {
+      response.status(500).send(`Request to Weatherbit failed: ${resp.statusText} (Status code ${resp.status})`);
+      return;
+    }
+
+    let json = await resp.json() as JSON;
+    response.send(json);
+
   }
 }
