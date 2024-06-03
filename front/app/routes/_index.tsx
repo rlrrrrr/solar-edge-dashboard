@@ -22,8 +22,8 @@ export default function Home() {
         <Section
             text="Le Magasin Connecté a pour mission de fournir un environnement d'apprentissage pratique et innovant pour les étudiants, tout en promouvant les énergies renouvelables et en soutenant la communauté étudiante. Voici nos principaux objectifs :"
             title="Nos Objectifs"
-            imgSrc="https://images-ext-1.discordapp.net/external/VLQJbkqc9sUkkZdn5Hti6Qnzqt1kZlhcneq34gaZ3w4/%3Fq%3D80%26w%3D3087%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D/https/images.unsplash.com/photo-1715622053361-4baf5ad2c51a?format=webp&width=376&height=565"
-            flexDirection={true}
+            imgSrc="./frontImage.webp"
+            flexDirection={false}
         >
           <ul className="grid gap-2 py-4">
             <li>

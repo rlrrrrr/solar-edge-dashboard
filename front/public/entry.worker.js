@@ -157,25 +157,31 @@ const route8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
 const assets = [
   "/CNRFID.webp",
   "/CO.webp",
-  "/DraculaTech.webp",
-  "/Eurofins_Scientific_logo.png",
-  "/Murati.webp",
-  "/ST.webp",
-  "/STID.webp",
-  "/STM.webp",
   "/co2.json",
+  "/colorShop.webp",
   "/connectWave.webp",
   "/dataset.json",
   "/draculalight.webp",
+  "/DraculaTech.webp",
   "/entry.worker.js",
+  "/Eurofins_Scientific_logo.png",
   "/exclamationLogo.webp",
   "/favicon.ico",
+  "/frontImage.webp",
+  "/frontImage2.webp",
   "/insiteo.png",
+  "/ledPanel.webp",
   "/logoInconnu.webp",
   "/lucibelRetail.png",
   "/lucibelRetail.webp",
+  "/MC.mp4",
+  "/Murati.webp",
+  "/planShop.webp",
   "/solar-192.png",
-  "/solar-512.png"
+  "/solar-512.png",
+  "/ST.webp",
+  "/STID.webp",
+  "/STM.webp"
 ];
 const routes = {
   "root": {
