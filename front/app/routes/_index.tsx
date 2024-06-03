@@ -62,7 +62,7 @@ export default function Home() {
             whiteLink="/contact"
             text="Nous vous invitons chaleureusement à venir découvrir le Magasin Connecté sur le campus de l'IUT de St Jérôme à Marseille. Plongez dans un univers technologique avant-gardiste où innovation et durabilité se rencontrent. Explorez notre plateforme, interagissez avec nos installations high-tech, et découvrez comment nos étudiants façonnent l'avenir des technologies et des énergies renouvelables. Nous serons ravis de vous accueillir et de partager avec vous notre passion pour l'innovation et la durabilité."
             title="Venez Nous Rendre Visite"
-            imgSrc="https://images-ext-1.discordapp.net/external/VLQJbkqc9sUkkZdn5Hti6Qnzqt1kZlhcneq34gaZ3w4/%3Fq%3D80%26w%3D3087%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D/https/images.unsplash.com/photo-1715622053361-4baf5ad2c51a?format=webp&width=376&height=565"
+            imgSrc="./venezNousVoir.webp"
             flexDirection={false}
         />
 

@@ -159,6 +159,7 @@ const assets = [
   "/CO.webp",
   "/co2.json",
   "/colorShop.webp",
+  "/ComoFonctionado.webp",
   "/connectWave.webp",
   "/dataset.json",
   "/draculalight.webp",
@@ -181,7 +182,8 @@ const assets = [
   "/solar-512.png",
   "/ST.webp",
   "/STID.webp",
-  "/STM.webp"
+  "/STM.webp",
+  "/venezNousVoir.webp"
 ];
 const routes = {
   "root": {
