@@ -3,7 +3,7 @@ import Paragraph from "./paragraph"
 
  export default function Footer() {
    return (
-     <footer className="mt-10 bg-gray-900 text-gray-400 py-8 px-4 md:px-6">
+     <footer className="mt-10 bg-gray-900 text-gray-400 py-8 px-4 md:px-6 ">
        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
          <div className="flex items-center mb-4 md:mb-0">
            <span className="font-semibold text-gray-300">Solar Panel</span>
@@ -18,6 +18,9 @@ import Paragraph from "./paragraph"
            </a>
          </div>
        </div>
+       <Paragraph variant="tertiary" className="mt-10 bg-gray-900 text-gray-400 py-8 px-4 md:px-6 ">
+         Dévelloper par Lucas CICARELLI, Romain CLEMENT, Hugo DESSAUD, Riyad LARBAOUI et Thomas RUBINI avec le département de l'IUT de Aix-en-Provence
+       </Paragraph>
      </footer>
    )
  }
