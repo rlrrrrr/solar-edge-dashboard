@@ -1,50 +1,12 @@
 import {LoaderFunctionArgs, redirect} from "@remix-run/node";
-import { Link } from "@remix-run/react";
+import {Link, Outlet, useLocation} from "@remix-run/react";
 import {getAdonisCookie, cookieParse, logout} from "~/auth"
-import {ReactNode} from "react";
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "../../components/ui/card";
-import {Label} from "../../components/ui/label";
-import {Input} from "../../components/ui/input";
 import {Button} from "../../components/ui/button";
-
 
 export async function action(){
     await logout();
     return null;
 }
-
-
-export function SetIntervalSection(){
-    return (
-            <div className="space-y-2">
-                <Label htmlFor="refresh-interval">Interval (seconds)</Label>
-                <Input
-                    id="refresh-interval"
-                    max="300"
-                    min="10"
-                    placeholder="Enter refresh interval"
-                    step="10"
-                    type="number"
-                />
-            </div>
-    )
-}
-
-export function SetApiKeySection() {
-    return (
-        <>
-            <div className="space-y-2">
-                <Label htmlFor="api-key">API Key</Label>
-                <Input id="api-key" placeholder="Enter your API key" type="text"/>
-            </div>
-            <div className="space-y-2">
-                <Label htmlFor="secret-key">Secret Key</Label>
-                <Input id="secret-key" placeholder="Enter your secret key" type="text"/>
-            </div>
-        </>
-    )
-}
-
 
 export async function loader({request}:LoaderFunctionArgs) {
     const cookie = getAdonisCookie(request.headers," panel");
@@ -56,36 +18,37 @@ export async function loader({request}:LoaderFunctionArgs) {
     return value;
 }
 
-export function SettingsLayout({title,description,content}: {title:string,description:string, content: ReactNode }) {
+export function NavBar(){
+    const location = useLocation();
+
+    // Fonction pour déterminer si un lien doit être rendu en gras
+    const isActive = (path) => {
+        return location.pathname === path;
+    };
     return (
-            <Card>
-                <CardHeader>
-                    <CardTitle>{title}</CardTitle>
-                    <CardDescription>{description}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    {content}
-                    <Button>Save</Button>
-                </CardContent>
-            </Card>
+        <nav
+            className="flex-col hidden gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+            <Link
+                className={`${isActive('/panel/settings') ? 'text-bold' : 'text-gray-500 dark:text-gray-400'}`}
+                to="/panel/settings"
+            >
+                Settings
+            </Link>
+            <Link
+                className={`${isActive('/panel/planner') ? 'text-bold' : 'text-gray-500 dark:text-gray-400'}`}
+                to="/panel/planner"
+            >
+                Planner
+            </Link>
+        </nav>
     )
 }
-
 
 export default function Home() {
     return (
         <div key="1" className="flex flex-col w-full min-h-screen">
             <section className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
-                <nav
-                    className="flex-col hidden gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-                    <Link className="text-bold" to="#">
-                        Settings
-                    </Link>
-                    <Link className="text-gray-500 dark:text-gray-400" to="#">
-                        Planner
-                    </Link>
-
-                </nav>
+                <NavBar/>
                 <form className="flex items-center w-full gap-4 md:ml-auto md:gap-2 lg:gap-4" method="post">
                     <div className="flex-1 ml-auto sm:flex-initial">
                         <div className="relative"/>
@@ -99,12 +62,7 @@ export default function Home() {
                 <div className="grid gap-4">
                     <h1 className="text-2xl font-bold">Admin Dashboard</h1>
                     <div className="grid gap-4 md:grid-cols-2">
-                        <SettingsLayout title={"API Settings"}
-                                        description={"Enter your API keys to connect your services."}
-                                        content={<SetApiKeySection/>}/>
-                        <SettingsLayout title={"Refresh Interval"}
-                                        description={"Set the interval in seconds to refresh the dashboard data."}
-                                        content={<SetIntervalSection/>}/>
+                        <Outlet/>
                     </div>
                 </div>
             </main>
