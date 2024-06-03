@@ -36,3 +36,4 @@ router.get('/api/co2Production', [ApiController, 'co2Production'])
 router.get('/api/energyDetails', [ApiController, 'energyDetails'])
 
 router.get('/api/daily_solar_radiation', [ApiController, 'daily_solar_radiation'])
+router.get('/api/hourly_prediction_solar_radiation', [ApiController, 'hourly_prediction_solar_radiation'])

@@ -168,4 +168,26 @@ export default class ApiController {
     let json = await resp.json() as JSON;
     response.send(json);
   }
+
+  async hourly_prediction_solar_radiation({ request, response }: HttpContext) {
+
+    logger.info(`Sending Weatherbit request for 24h forecasts`);
+    // make request to Weatherbit API
+    let resp = await fetch(weatherbitEndpoint + `/forecast/hourly?` + new URLSearchParams({
+      key: weatherbitApiKey!,
+      lat: latitude!,
+      lon: longitude!,
+      lang: 'fr',
+      hours: '24',  // One day
+    }));
+
+    if (!resp.ok) {
+      response.status(500).send(`Request to Weatherbit failed: ${resp.statusText} (Status code ${resp.status})`);
+      return;
+    }
+
+    let json = await resp.json() as JSON;
+    response.send(json);
+
+  }
 }
