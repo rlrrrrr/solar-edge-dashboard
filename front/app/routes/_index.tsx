@@ -1,7 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import PartnerSection from "components/ui/partnerSection";
 import Section from "components/ui/section";
-import HeroSection from "components/ui/heroSection";
+import  HeroSection from "components/ui/heroSection";
 import GridSection from "../../components/ui/gridSection";
 import VideoSection from "../../components/ui/videoSection";
 
@@ -16,7 +16,7 @@ export const meta: MetaFunction = () => {
 export default function Home() {
   return (
       <>
-        <HeroSection title={"Le Magasin Connecté 4.0"} paragraph={ "Une épicerie indépendante de l'IUT, gérée par une association d'étudiants pour les étudiants."} presentation={"une plateforme technologique de 150 m2 dédiée aux étudiants. "}/>
+          <HeroSection title={"Magasion Connecté 4.0"} presentation={"testt"} paragraph={"test"} ></HeroSection>
           <VideoSection/>
           <GridSection></GridSection>
         <Section
