@@ -9,8 +9,10 @@ function GasEmissionChart() {
         datasets: []
     });
 
+    const gasEmissionUrl = `http://localhost:3333/api/co2Production`;
+
     useEffect(() => {
-        fetch('co2.json')
+        fetch(gasEmissionUrl)
             .then(response => response.json())
             .then(data => {
                 // Assuming data structure as provided before

@@ -15,7 +15,6 @@ export const meta: MetaFunction = () => {
 export default function Home() {
   return (
       <>
-        <OpeningTimesSelector/>
         <HeroSection title={"Le Magasin Connecté 4.0"} paragraph={ "Une épicerie indépendante de l'IUT, gérée par une association d'étudiants pour les étudiants."} presentation={"une plateforme technologique de 150 m2 dédiée aux étudiants. "}/>
         <Section
             btnValueBlack="En savoir plus"

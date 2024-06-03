@@ -47,31 +47,36 @@ const EnergyDataChart = ({ date }: EnergyDataChartProps) => {
                         label: 'Consumption (kWh)',
                         data: getDataForMeterType("Consumption"),
                         borderColor: 'rgb(255, 99, 132)',
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        pointRadius: 0
                     },
                     {
                         label: 'Production (kWh)',
                         data: getDataForMeterType("Production"),
                         borderColor: 'rgb(23, 162, 184)', 
-                        backgroundColor: 'rgba(23, 162, 184, 0.5)'
+                        backgroundColor: 'rgba(23, 162, 184, 0.5)',
+                        pointRadius: 0
                     },
                     {
                         label: 'SelfConsumption (kWh)',
                         data: getDataForMeterType("SelfConsumption"),
                         borderColor: 'rgb(54, 162, 235)',
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)'
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        pointRadius: 0
                     },
                     {
                         label: 'Feedin (kWh)',
                         data: getDataForMeterType("FeedIn"),
                         borderColor: 'rgb(255, 206, 86)',
-                        backgroundColor: 'rgba(255, 206, 86, 0.5)'
+                        backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                        pointRadius: 0
                     },
                     {
                         label: 'Purchased (kWh)',
                         data: getDataForMeterType("Purchased"),
                         borderColor: 'rgb(75, 192, 192)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.5)'
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        pointRadius: 0
                     }
                 ];
             })
