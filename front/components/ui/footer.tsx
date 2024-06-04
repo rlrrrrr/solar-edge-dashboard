@@ -8,7 +8,6 @@ export default function Footer() {
           <span className="font-semibold text-gray-300">Solar Panel</span>
         </div>
         <div className="flex items-center space-x-4">
-          <Paragraph variant="tertiary">lorem ipsum</Paragraph>
           <a className="text-sm hover:text-gray-300 transition-colors" href="#">
             Privacy Policy
           </a>
