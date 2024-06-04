@@ -16,7 +16,7 @@ export const meta: MetaFunction = () => {
 export default function Home() {
   return (
       <>
-          <HeroSection title={"Magasion Connecté 4.0"} presentation={"testt"} paragraph={"test"} ></HeroSection>
+          <HeroSection title={"Magasion Connecté 4.0"} presentation={"Un projet Aix-Marseille Université"} paragraph={"test"} ></HeroSection>
           <VideoSection/>
           <GridSection></GridSection>
         <Section
