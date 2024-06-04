@@ -40,27 +40,23 @@ export class CacheKey {
   private startDate: string;
   private endDate: string;
   private others: string[];
-  constructor(startDate: string, endDate: string, ...others: string[]) {
+  constructor(startDate: string, endDateStr: string, ...others: string[]) {
     this.startDate = startDate;
     this.others = others;
 
-    let currentDay = new Date().toISOString().split('T')[0];
-    let endDay = new Date(endDate).toISOString().split('T')[0];
+    let currentDate = new Date();
+    let endDate = new Date(endDateStr);
 
-    if (endDay >= currentDay) { // yes, we can compare date strings like that
+    if (endDate >= currentDate) { // yes, we can compare date strings like that
       logger.debug("End date is today or in the future, meaning we want live data. Setting cache key to reset at the next 15 minutes marker");
 
       // update time to the next 15 minutes. e.g. 11:31:00 -> 11:45:00
-      let flooredTime = new Date();
-      let flooredMinutes = Math.floor(flooredTime.getMinutes() / 15) * 15;
-      flooredTime.setMinutes(flooredMinutes);
-      flooredTime.setSeconds(0);
-      flooredTime.setMilliseconds(0);
-
-      this.endDate = flooredTime.toISOString();
-    } else {
-      this.endDate = endDate;
+      let flooredMinutes = Math.floor(endDate.getMinutes() / 15) * 15;
+      endDate.setMinutes(flooredMinutes);
+      endDate.setSeconds(0);
+      endDate.setMilliseconds(0);
     }
+    this.endDate = endDate.toISOString();
   }
 
   toString(): CacheKeyStr {

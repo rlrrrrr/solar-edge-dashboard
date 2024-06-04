@@ -3,6 +3,7 @@ import env from '#start/env'
 import logger from '@adonisjs/core/services/logger';
 import { Duration } from 'luxon';
 import { CacheKey, CachedValue, TimeSerieCache } from '#utils/utils';
+import { start } from 'repl';
 
 const timeUnits = ["QUARTER_OF_AN_HOUR", "HOUR", "DAY", "WEEK", "MONTH", "YEAR"];
 
@@ -49,6 +50,8 @@ export default class ApiController {
     let endDate = ensureParam(request, response, 'endDate');
     if (!timeUnits.includes(timeUnit)) response.abort({ message: "Invalid time unit: " + timeUnit })
     let key = new CacheKey(startDate, endDate, timeUnit);
+    console.log(endDate);
+    console.log(key.toString());
 
     // check if we have cached this request in the cache
     let value = electricityCache.get(key.toString());
@@ -61,12 +64,14 @@ export default class ApiController {
     logger.info(`Sending SolarEdge request with start date ${startDate}, end date ${endDate}, time unit ${timeUnit}`);
     logger.debug(`(Wanted key is ${key.toString()})`);
     // make request to SolarEdge API
-    let resp = await fetch(endpoint + `/site/${siteId}/energy?`+new URLSearchParams({
+    let url = endpoint + `/site/${siteId}/energy?`+new URLSearchParams({
       api_key: apiKey!,
       startDate: startDate,
       endDate: endDate,
       timeUnit: timeUnit,
-    }));
+    });
+    console.log(url);
+    let resp = await fetch(url);
 
     if (!resp.ok) {
       response.status(500).send(`Request to SolarEdge failed: ${resp.statusText} (Status code ${resp.status})`);
