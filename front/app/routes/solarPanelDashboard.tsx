@@ -22,8 +22,8 @@ export function dateRangeToAPIStr(range: DateRange): [string, string] {
 export default function Component() {
 
     const [date, setDate] = React.useState<DateRange>({
-      from: addDays(new Date(), -32),
-      to: addDays(new Date(), 2),
+      from: addDays(new Date(), -6),
+      to: new Date(),
     })
 
     return (

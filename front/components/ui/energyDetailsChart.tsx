@@ -96,6 +96,12 @@ const EnergyDataChart = ({ date }: EnergyDataChartProps) => {
                 time: {
                     unit: 'day'
                 }
+            },
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Electricity (kWh)'                }
             }
         }
     };

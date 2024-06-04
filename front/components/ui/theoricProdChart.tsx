@@ -35,7 +35,7 @@ function TheoricProductionChart() {
                     // Transform the data into the format expected by the chart
                     newData.labels = solarData.map(entry => format(new Date(entry.time), 'HH:mm:ss'));
                     newData.datasets.push({
-                        label: "Solar Radiation (kWh)",
+                        label: "Theorical Energy Production (kWh)",
                         xAxisID: 'xAxis0',
                         data: solarData.map(entry => entry.solarRad * 130 / 1000),
                         fill: false,
