@@ -17,7 +17,7 @@ export default function DayProductionChart({data}) {
                 data: data.energy.values.map((entry) => entry.value),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                tension: 0.3
             }]
         };
         setChartData(newData);

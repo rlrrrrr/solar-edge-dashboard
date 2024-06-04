@@ -30,7 +30,7 @@ export default function TheoricProductionChart({data}) {
                 data: solarData.map(entry => entry.solarRad * 130 / 1000),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                tension: 0.3
             }]
         };
         setChartData(newData);
