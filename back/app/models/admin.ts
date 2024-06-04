@@ -9,7 +9,7 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   passwordColumnName: 'password',
 })
 
-export default class User extends compose(BaseModel, AuthFinder) {
+export default class Admin extends compose(BaseModel, AuthFinder) {
   @column({ isPrimary: true })
   declare id: string
 

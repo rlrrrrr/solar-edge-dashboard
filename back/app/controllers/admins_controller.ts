@@ -1,8 +1,10 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import { randomUUID } from 'node:crypto'
-import User from '#models/user'
+import { inject } from '@adonisjs/core'
+import { RepositoryService } from '#contracts/repository'
+@inject()
+export default class AdminsController {
+  constructor(protected adminRepository: RepositoryService) {}
 
-export default class UsersController {
   /**
    * Display a list of resource
    */
@@ -12,13 +14,7 @@ export default class UsersController {
    * Handle form submission for the create action
    */
   async store({ request }: HttpContext) {
-    const user = new User()
-    const uuid = randomUUID()
     const { identifier, password } = request.body()
-    user.id = uuid
-    user.identifier = identifier
-    user.password = password
-    await user.save()
+    await this.adminRepository.save(identifier, password)
   }
-
 }

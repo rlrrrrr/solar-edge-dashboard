@@ -10,8 +10,8 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
 import ApiController from '#controllers/api_controller'
-const SessionController = () => import('#controllers/session_controller')
-const UsersController = () => import('#controllers/users_controller')
+import SessionController from '#controllers/session_controller'
+import UsersController from '#controllers/admins_controller'
 
 router.get('/', async () => {
   return {
@@ -29,7 +29,7 @@ router
 
 router.post('/login', [SessionController, 'store'])
 
-router.post('/signin', [UsersController, 'store'])
+router.post('/signin', [UsersController, 'store']).use(middleware.auth());
 
 router.get('/api/electricity', [ApiController, 'electricity'])
 router.get('/api/co2Production', [ApiController, 'co2Production'])

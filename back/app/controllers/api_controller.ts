@@ -62,7 +62,7 @@ export default class ApiController {
     logger.debug(`(Wanted key is ${key.toString()})`);
     // make request to SolarEdge API
     let resp = await fetch(endpoint + `/site/${siteId}/energy?`+new URLSearchParams({
-      api_key: apiKey!,
+          api_key: apiKey!,
       startDate: startDate,
       endDate: endDate,
       timeUnit: timeUnit,
@@ -114,7 +114,7 @@ export default class ApiController {
     let endDate = ensureParam(request, response, 'endDate');
     if (!timeUnits.includes(timeUnit)) response.abort({ message: "Invalid time unit: " + timeUnit })
     let key = new CacheKey(startDate, endDate, timeUnit, meters);
-  
+
     let value = energyDetailsCache.get(key.toString());
     if (value === null) {
       response.header('X-Cache', 'false');
