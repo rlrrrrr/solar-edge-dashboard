@@ -21,7 +21,7 @@ export default function Footer() {
         variant="tertiary"
         className="mt-10 text-center"
       >
-        Dévelloper par Lucas CICARELLI, Romain CLEMENT, Hugo DESSAUD, Riyad LARBAOUI et Thomas RUBINI avec le département de l'IUT de Aix-en-Provence
+        Développer par Lucas CICARELLI, Romain CLEMENT, Hugo DESSAUD, Riyad LARBAOUI et Thomas RUBINI avec le département de l'IUT de Aix-en-Provence
       </Paragraph>
     </footer>
   );

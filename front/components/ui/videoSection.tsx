@@ -31,7 +31,7 @@ export default function VideoSection() {
     }, []);
 
     return (
-        <Card className="w-full max-h-[90vh] py-12 md:py-24 lg:py-8 bg-black dark:bg-black relative">
+        <Card className="w-full py-16 md:py-24 bg-black dark:bg-black relative">
             <div className="absolute inset-0 z-0">
                 <video
                     className="w-full h-full object-cover filter blur-lg brightness-50"
@@ -43,12 +43,15 @@ export default function VideoSection() {
                     <source src="MC.mp4" type="video/mp4" />
                 </video>
             </div>
-            <div className="relative z-10 container mx-auto px-4 md:px-6 lg:px-8">
+            <div className="relative z-20 container mx-auto px-4 md:px-6 lg:px-8">
                 <div className="flex flex-col items-center">
-                    <div className=" bg-black dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
-                        <div className="w-full" style={{}}>
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl text-white font-bold text-center mb-8">
+                        Vu sur Made in Marseille !
+                    </h1>
+                    <div className="bg-black dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+                        <div className="w-full max-w-[75vh] max-h-[75vh]">
                             <video
-                                className="w-full max-w-[75vh] max-h-[75vh] object-cover rounded-lg"
+                                className="w-full h-full object-cover rounded-lg"
                                 ref={ref}
                                 controls
                                 onPlay={() => setIsPlaying(true)}

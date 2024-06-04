@@ -7,7 +7,7 @@ const OpeningTimeTable = () => {
 
     return (
         <div className="space-y-2">
-            <Title variant='secondary'>Nos horaires</Title>
+            <Title variant='secondary'>Les Horaires de l'épicerie solidaire</Title>
             <div className="rounded-lg border dark:border-gray-800 overflow-hidden bg-gray-100 dark:bg-gray-800">
                 <Table>
                     <TableHeader>
