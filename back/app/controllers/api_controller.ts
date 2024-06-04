@@ -46,8 +46,6 @@ export default class ApiController {
     let endDate = ensureParam(request, response, 'endDate');
     if (!timeUnits.includes(timeUnit)) response.abort({ message: "Invalid time unit: " + timeUnit })
     let key = new CacheKey(startDate, endDate, timeUnit);
-    console.log(endDate);
-    console.log(key.toString());
 
     // check if we have cached this request in the cache
     let value = electricityCache.get(key.toString());
@@ -66,7 +64,6 @@ export default class ApiController {
       endDate: endDate,
       timeUnit: timeUnit,
     });
-    console.log(url);
     let resp = await fetch(url);
 
     if (!resp.ok) {
@@ -135,7 +132,6 @@ export default class ApiController {
       }
 
       value = await resp.json() as JSON;
-      console.log(value);
       energyDetailsCache.set(key.toString(), value);
 
     } else {
