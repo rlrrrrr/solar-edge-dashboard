@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ChartComponent from './chart';
 import { DateRange } from 'react-day-picker';
 import { dateRangeToAPIStr } from '~/routes/solarPanelDashboard';
+import { format, addDays } from "date-fns";
 
 interface ProductionChartProps {
     className?: string;
@@ -29,7 +30,6 @@ function ProductionChart({ date }: ProductionChartProps) {
             let req1 = fetch(url)  
                 .then(response => response.json())
                 .then(data => {
-                    // Transform the data into the format expected by the chart
                     newData.labels = data.energy.values.map(entry => entry.date);
                     newData.datasets.push({
                         label: "Energy production (kWh)",
@@ -37,24 +37,27 @@ function ProductionChart({ date }: ProductionChartProps) {
                         data: data.energy.values.map(entry => entry.value / 1000),
                         fill: false,
                         borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
+                        tension: 0.1,
+                        pointRadius: 0
                     });
                 })
                 .catch(error => console.error('Failed to load data:', error));
             
-            const radiation_url = `http://localhost:3333/api/daily_solar_radiation?startDate=${startDate}&endDate=${endDate}`;
+            const endDateTheorical = format(addDays(endDate, 1), 'yyyy-MM-dd')
 
+            const radiation_url = `http://localhost:3333/api/daily_solar_radiation?startDate=${startDate}&endDate=${endDateTheorical}`;
+            console.log(radiation_url)
             let req2 = fetch(radiation_url)
                 .then(response => response.json())
                 .then(data => {
-                    // Transform the data into the format expected by the chart
                     newData.datasets.push({
                         label: "Theorical production (kWh)",
                         xAxisID: 'xAxis0',
                         data: data.data.map(entry => entry.solar_rad * 130 / 1000 / 24),
                         fill: false,
                         borderColor: 'rgb(175, 92, 192)',
-                        tension: 0.1
+                        tension: 0.1,
+                        pointRadius: 0
                     });
                 })
                 .catch(error => console.error('Failed to load data: ', error));
@@ -71,14 +74,15 @@ function ProductionChart({ date }: ProductionChartProps) {
         scales: {
             x: {
                 type: 'time',
-                parsing: false,
                 time: {
-                    unit: 'hour',
-                    stepSize: 1,
-                    displayFormats: {
-                        hour: 'H',
-                        day: 'YYYY-MM-DD',
-                    }
+                    unit: 'day'
+                }
+            },
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Electricity (kWh)'
                 }
             }
         }
