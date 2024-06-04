@@ -19,7 +19,7 @@ export default function Footer() {
       </div>
       <Paragraph
         variant="tertiary"
-        className="mt-10 text-center"
+        supClass="mt-5 container mx-auto flex"
       >
         Développer par Lucas CICARELLI, Romain CLEMENT, Hugo DESSAUD, Riyad LARBAOUI et Thomas RUBINI avec le département de l'IUT de Aix-en-Provence
       </Paragraph>
