@@ -7,8 +7,8 @@ import VideoSection from "../../components/ui/videoSection";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Magasin Connecté 4.0" },
+    { name: "description", content: "Découvrez le projet Magasin Connecté 4.0" },
   ];
 };
 

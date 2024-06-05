@@ -18,7 +18,7 @@ export default function Section({
   children?: React.ReactNode
 }) {
   return (
-    <section className="w-full py-8 md:py-12 lg:py-24 bg-gray-100 dark:bg-gray-800">
+    <section className="w-full py-8 md:py-12 lg:py-24 bg-gray-100 dark:bg-gray-800 md:px-6 ">
       <Card>
         {/* <div className="container px-4 md:px-6 lg:px-8"> */}
           <div className={`grid gap-6 lg:grid-cols-[1fr_550px] lg:gap-12 xl:grid-cols-[1fr_600px] overflow-hidden rounded-lg border bg-background p-4 md:p-12 lg:p-20 md:shadow-xl ${flexDirection ? 'lg:grid-cols-[550px_1fr]' : ''}`}>

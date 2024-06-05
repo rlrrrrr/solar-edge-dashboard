@@ -1,6 +1,8 @@
 import Paragraph from "./paragraph";
 import Title from "./title";
 import { BorderBeam } from "../magicui/border-beam";
+import { Card } from "./card";
+import Section from "./section";
 
 export default function PartnerSection() {
   return (
@@ -14,7 +16,7 @@ export default function PartnerSection() {
           </Paragraph>
         </div>
         <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-12">
-          <a href="https://www.lopcommerce.com/">
+          <a href="https://www.lopcommerce.com/" target="_blank">
             <img
               alt="Logo partenaire"
               className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
@@ -23,7 +25,7 @@ export default function PartnerSection() {
               width="140"
             />
           </a>
-          <a href="https://www.connectwave.fr/">
+          <a href="https://www.connectwave.fr/" target="_blank">
             <img
               alt="Logo partenaire"
               className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
@@ -32,7 +34,7 @@ export default function PartnerSection() {
               width="140"
             />
           </a>
-          <a href="https://dracula-technologies.com/">
+          <a href="https://dracula-technologies.com/" target="_blank">
             <img
               alt="Logo partenaire"
               className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
@@ -41,7 +43,7 @@ export default function PartnerSection() {
               width="140"
             />
           </a>
-          <a href="https://www.insiteo.com/">
+          <a href="https://www.insiteo.com/" target="_blank">
             <img
               alt="Logo partenaire"
               className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
@@ -50,7 +52,7 @@ export default function PartnerSection() {
               width="140"
             />
           </a>
-          <a href="https://www.eurofins.fr/">
+          <a href="https://www.eurofins.fr/" target="_blank">
             <img
               alt="Logo partenaire"
               className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
@@ -59,7 +61,7 @@ export default function PartnerSection() {
               width="140"
             />
           </a>
-          <a href="https://lucibel.com/">
+          <a href="https://lucibel.com/" target="_blank">
             <img
               alt="Logo partenaire"
               className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
@@ -68,7 +70,7 @@ export default function PartnerSection() {
               width="140"
             />
           </a>
-          <a href="https://www.murati-merchandising.com/">
+          <a href="https://www.murati-merchandising.com/" target="_blank">
             <img
               alt="Logo partenaire"
               className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
@@ -77,7 +79,7 @@ export default function PartnerSection() {
               width="140"
             />
           </a>
-          <a href="https://www.st.com/content/st_com/en.html">
+          <a href="https://www.st.com/content/st_com/en.html" target="_blank">
             <img
               alt="Logo partenaire"
               className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
@@ -86,7 +88,7 @@ export default function PartnerSection() {
               width="140"
             />
           </a>
-          <a href="https://www.stid.com/fr/">
+          <a href="https://www.stid.com/fr/" target="_blank">
             <img
               alt="Logo partenaire"
               className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
