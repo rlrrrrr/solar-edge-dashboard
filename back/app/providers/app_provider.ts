@@ -1,12 +1,17 @@
 import { RepositoryService } from '#contracts/repository'
-import app from '@adonisjs/core/services/app'
+import { AuthentificationService } from '#contracts/auth-service'
+import { ApplicationService } from '@adonisjs/core/types'
 
 export default class AppProvider {
+  constructor(protected app: ApplicationService) {}
   async boot() {
     const { AdminRepository } = await import('#services/admin-repository')
-
-    app.container.bind(RepositoryService, () => {
-      return app.container.make(AdminRepository)
+    const { AuthentificationSessionService } = await import('#services/auth_service')
+    this.app.container.bind(AuthentificationService, () => {
+      return this.app.container.make(AuthentificationSessionService)
+    })
+    this.app.container.bind(RepositoryService, () => {
+      return this.app.container.make(AdminRepository)
     })
   }
 }
