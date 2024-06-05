@@ -62,8 +62,7 @@ export default function TheoricProductionChart({data}) {
         },
         plugins: {
             legend: {
-                display: true,
-                position: 'top'
+                display: false
             }
         }
     };

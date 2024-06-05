@@ -48,6 +48,11 @@ export default function DayProductionChart({data}) {
                     text: 'Electricity (kWh)'
                 }
             }
+        },
+        plugins: {
+            legend: {
+                display: false
+            }
         }
     };
 
