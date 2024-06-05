@@ -19,7 +19,7 @@ const EnergyDataChart = ({ date }: EnergyDataChartProps) => {
         if (!date.from || !date.to) return;
         const [startDate, endDate] = dateRangeToAPIStr(date);
     
-        const url = `http://localhost:3333/api/energyDetails?startDate=${startDate}&endDate=${endDate}&meters=PRODUCTION,CONSUMPTION,SELFCONSUMPTION,FEEDIN,PURCHASED&timeUnit=QUARTER_OF_AN_HOUR`;
+        const url = `${process.env.API_URL}/api/energyDetails?startDate=${startDate}&endDate=${endDate}&meters=PRODUCTION,CONSUMPTION,SELFCONSUMPTION,FEEDIN,PURCHASED&timeUnit=QUARTER_OF_AN_HOUR`;
     
         let newData = {
             labels: [] as string[],

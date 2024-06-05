@@ -16,7 +16,7 @@ function TheoricProductionChart() {
 
     useEffect(() => {
         const foo = async () => {
-            const url = `http://localhost:3333/api/hourly_prediction_solar_radiation`;
+            const url = `${process.env.API_URL}/api/hourly_prediction_solar_radiation`;
 
             let newData = {
                 labels: [] as string[],
