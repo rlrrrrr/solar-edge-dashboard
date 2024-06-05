@@ -9,7 +9,7 @@ function GasEmissionChart() {
         datasets: []
     });
 
-    const gasEmissionUrl = `http://localhost:3333/api/co2Production`;
+    const gasEmissionUrl = `${process.env.API_URL}/api/co2Production`;
 
     useEffect(() => {
         fetch(gasEmissionUrl)

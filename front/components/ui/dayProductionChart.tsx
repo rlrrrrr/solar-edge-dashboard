@@ -10,7 +10,7 @@ function DayProductionChart() {
 
     const currentDate = format(new Date(), 'yyyy-MM-dd');
 
-    const url = `http://localhost:3333/api/electricity?startDate=${currentDate}&endDate=${currentDate}&timeUnit=QUARTER_OF_AN_HOUR`;
+    const url = `${process.env.API_URL}/api/electricity?startDate=${currentDate}&endDate=${currentDate}&timeUnit=QUARTER_OF_AN_HOUR`;
     useEffect(() => {
         fetch(url)
             .then(response => response.json())
