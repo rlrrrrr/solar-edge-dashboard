@@ -10,7 +10,7 @@ export default function DayProductionChart({data}) {
 
     useEffect(() => {
         const newData = {
-            labels: data.energy.values.map((entry) => format(new Date(entry.date), 'HH:mm:ss')),
+            labels: data.energy.values.map((entry) => format(new Date(entry.date), 'HH:mm')),
             datasets: [{
                 label: "Production in a day (Wh)",
                 xAxisID: 'xAxis0',
@@ -27,7 +27,7 @@ export default function DayProductionChart({data}) {
             x: {
                 type: 'time',
                 time: {
-                    parser: 'HH:mm:ss',
+                    parser: 'HH:mm',
                     unit: 'hour',
                     displayFormats: {
                         hour: 'HH'

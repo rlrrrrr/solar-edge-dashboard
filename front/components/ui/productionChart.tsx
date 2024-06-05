@@ -31,9 +31,9 @@ function ProductionChart({ date, api_url }: {date:ProductionChartProps,api_url:s
                 .then(response => response.json())
                 .then(data => {
                     newData.labels = data.energy.values.map(entry => entry.date);
+                    console.log(newData.labels);
                     newData.datasets.push({
                         label: "Energy production (kWh)",
-                        xAxisID: 'xAxis0',
                         data: data.energy.values.map(entry => entry.value / 1000),
                         fill: false,
                         borderColor: 'rgb(75, 192, 192)',
@@ -52,7 +52,6 @@ function ProductionChart({ date, api_url }: {date:ProductionChartProps,api_url:s
                 .then(data => {
                     newData.datasets.push({
                         label: "Theorical production (kWh)",
-                        xAxisID: 'xAxis0',
                         data: data.data.map(entry => entry.solar_rad * 130 / 1000 / 24),
                         fill: false,
                         borderColor: 'rgb(175, 92, 192)',

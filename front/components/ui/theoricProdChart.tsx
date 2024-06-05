@@ -23,7 +23,7 @@ export default function TheoricProductionChart({data}) {
         console.log("theoric production data ", solarData)
 
         const newData = {
-            labels: solarData.map(entry => format(new Date(entry.time), 'HH:mm:ss')),
+            labels: solarData.map(entry => format(new Date(entry.time), 'HH:mm')),
             datasets: [{
                 label: "Theorical Energy Production (kWh)",
                 xAxisID: 'xAxis0',
