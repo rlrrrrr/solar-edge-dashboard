@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f864ddc-06a5-4789-ace5-843c5e244e23" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/app/root.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/app/routes/solarPanelDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/app/routes/solarPanelDashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/components/ui/datePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/components/ui/datePicker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/components/ui/dayProductionChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/components/ui/dayProductionChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/components/ui/energyDetailsChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/components/ui/energyDetailsChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/components/ui/gasEmissionsChart.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/components/ui/productionChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/components/ui/productionChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/components/ui/theoricProdChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/components/ui/theoricProdChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/public/entry.worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/public/entry.worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/store/openingHoursStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/store/openingHoursStore.ts" afterDir="false" />
-    </list>
+    <list default="true" id="7f864ddc-06a5-4789-ace5-843c5e244e23" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,7 +31,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;planner-with-db&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -82,6 +70,7 @@
       <workItem from="1717589063092" duration="7514000" />
       <workItem from="1717610427595" duration="13165000" />
       <workItem from="1717665017811" duration="3191000" />
+      <workItem from="1717695593587" duration="2523000" />
     </task>
     <servers />
   </component>
@@ -118,5 +107,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>

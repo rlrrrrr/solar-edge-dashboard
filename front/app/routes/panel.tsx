@@ -9,8 +9,7 @@ export async function action(){
 }
 
 export async function loader({request}:LoaderFunctionArgs) {
-    const cookie = getAdonisCookie(request.headers," panel");
-    console.log("cookie ",cookie);
+    const cookie = getAdonisCookie(request.headers,"panel");
     if(!cookie){
         throw redirect("/login");
     }
