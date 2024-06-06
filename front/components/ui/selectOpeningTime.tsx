@@ -1,10 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './button';
 import { Input } from './input';
+import { json } from "@remix-run/node";
+import { useLoaderData, useFetcher } from "@remix-run/react";
 import { useOpeningHoursStore } from '../../store/openingHoursStore';
 
+// Define the loader function to fetch data from the API
+export const loader = async () => {
+    let response;
+    try {
+        response = await fetch(`${process.env.API_URL}/calendar`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch');
+        }
+    } catch (error) {
+        const { openingHours } = useOpeningHoursStore.getState();
+        return json(openingHours);
+    }
+
+    const openingHours = await response.json();
+    return json(openingHours);
+};
+
 const OpeningTimesSelector = () => {
-  const { openingHours, setOpeningHours } = useOpeningHoursStore();
+  const openingHours = useLoaderData();
+  const fetcher = useFetcher();
+  const { setOpeningHours: setStoredOpeningHours } = useOpeningHoursStore();
 
   const [openingTimes, setOpeningTimes] = useState(openingHours);
 
@@ -12,7 +39,7 @@ const OpeningTimesSelector = () => {
     setOpeningTimes(openingHours);
   }, [openingHours]);
 
-  const handleTimeChange = (index: number, period: string, value: string) => {
+  const handleTimeChange = (index, period, value) => {
     const [hours, minutes] = value.split(':').map(Number);
 
     if (period.includes('morning') && (hours < 0 || hours > 11)) {
@@ -29,14 +56,21 @@ const OpeningTimesSelector = () => {
     setOpeningTimes(newOpeningTimes);
   };
 
-  const handleClosedChange = (index: number, period: string, isClosed: boolean) => {
+  const handleClosedChange = (index, period, isClosed) => {
     const newOpeningTimes = [...openingTimes];
     newOpeningTimes[index] = { ...newOpeningTimes[index], [period]: isClosed };
     setOpeningTimes(newOpeningTimes);
   };
 
   const handleSubmit = () => {
-    setOpeningHours(openingTimes);
+    fetcher.submit(
+      { openingTimes: JSON.stringify(openingTimes) },
+      { method: 'post', action: '/calendar' }
+    );
+
+    if (!fetcher.state) {
+      setStoredOpeningHours(openingTimes);
+    }
   };
 
   return (
