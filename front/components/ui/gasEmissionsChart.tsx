@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import ChartComponent from '../../components/ui/chart';
+import ChartComponent from './chart';
 
 export default function GasEmissionChart({data}) {
     const [chartData, setChartData] = useState({
@@ -43,11 +43,7 @@ export default function GasEmissionChart({data}) {
         responsive: true,
         plugins: {
             legend: {
-                position: 'top',
-            },
-            tooltip: {
-                mode: 'index',
-                intersect: false,
+                display: false
             }
         }
     };
