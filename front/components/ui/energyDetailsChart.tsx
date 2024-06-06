@@ -43,7 +43,7 @@ const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url
                 // Populate newData.datasets with the data for each meter type
                 newData.datasets = [
                     {
-                        label: 'Consumption (kWh)',
+                        label: 'Consommation',
                         data: getDataForMeterType("Consumption"),
                         borderColor: 'rgb(255, 99, 132)',
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
@@ -51,7 +51,7 @@ const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url
                         tension: 0.3
                     },
                     {
-                        label: 'Production (kWh)',
+                        label: 'Production',
                         data: getDataForMeterType("Production"),
                         borderColor: 'rgb(23, 162, 184)', 
                         backgroundColor: 'rgba(23, 162, 184, 0.5)',
@@ -59,7 +59,7 @@ const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url
                         tension: 0.3
                     },
                     {
-                        label: 'Feedin (kWh)',
+                        label: 'Vendu',
                         data: getDataForMeterType("FeedIn"),
                         borderColor: 'rgb(255, 206, 86)',
                         backgroundColor: 'rgba(255, 206, 86, 0.5)',
@@ -67,7 +67,7 @@ const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url
                         tension: 0.3
                     },
                     {
-                        label: 'Purchased (kWh)',
+                        label: 'Acheté',
                         data: getDataForMeterType("Purchased"),
                         borderColor: 'rgb(75, 192, 192)',
                         backgroundColor: 'rgba(75, 192, 192, 0.5)',
@@ -97,7 +97,7 @@ const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url
                 beginAtZero: true,
                 title: {
                     display: true,
-                    text: 'Electricity (kWh)'                }
+                    text: 'Energie (kWh)'                }
             }
         }
     };

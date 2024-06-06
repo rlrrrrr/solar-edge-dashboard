@@ -25,7 +25,7 @@ export default function TheoricProductionChart({data}) {
         const newData = {
             labels: solarData.map(entry => format(new Date(entry.time), 'H:mm')),
             datasets: [{
-                label: "Theorical Energy Production (kWh)",
+                label: "Production théorique",
                 xAxisID: 'xAxis0',
                 data: solarData.map(entry => entry.solarRad * 130 / 1000),
                 fill: false,
@@ -56,7 +56,7 @@ export default function TheoricProductionChart({data}) {
                 beginAtZero: true,
                 title: {
                     display: true,
-                    text: 'Therical Production (kWh)'
+                    text: 'Production théorique (kWh)'
                 }
             }
         },

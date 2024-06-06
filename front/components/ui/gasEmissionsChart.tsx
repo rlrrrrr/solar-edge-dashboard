@@ -10,7 +10,7 @@ export default function GasEmissionChart({data}) {
     useEffect(() => {
         const gasEmissions = data.envBenefits.gasEmissionSaved;
         const newData = {
-            labels: ['CO2 (kg)', 'SO2 (kg)', 'NOx (kg)'],
+            labels: ['CO₂', 'SO₂', 'NOx'],
             datasets: [{
                 label: 'Gas Emissions',
                 data: [gasEmissions.co2, gasEmissions.so2, gasEmissions.nox],
@@ -36,7 +36,7 @@ export default function GasEmissionChart({data}) {
                 beginAtZero: true,
                 title: {
                     display: true,
-                    text: 'Quantity (kg)'
+                    text: 'Quantité (kg)'
                 }
             }
         },

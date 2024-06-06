@@ -41,7 +41,7 @@ export default function DayProductionChart({data}) {
         const newData = {
             labels: data.energy.values.map((entry) => format(new Date(entry.date), 'H:mm')),
             datasets: [{
-                label: "Production in a day (kWh)",
+                label: "Production journalière",
                 data: data.energy.values.map((entry) => (entry.value==null ? null : entry.value / 1000)),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
@@ -66,7 +66,7 @@ export default function DayProductionChart({data}) {
                 beginAtZero: true,
                 title: {
                     display: true,
-                    text: 'Electricity (kWh)'
+                    text: 'Energie (kWh)'
                 }
             }
         },

@@ -33,12 +33,13 @@ function ProductionChart({ date, api_url }: {date:ProductionChartProps,api_url:s
                     newData.labels = data.energy.values.map(entry => entry.date);
                     console.log(newData.labels);
                     newData.datasets.push({
-                        label: "Energy production (kWh)",
+                        label: "Production d'énergie",
                         data: data.energy.values.map(entry => entry.value / 1000),
                         fill: false,
                         borderColor: 'rgb(75, 192, 192)',
                         tension: 0.3,
-                        pointRadius: 0
+                        pointRadius: 0,
+                        order: 0
                     });
                 })
                 .catch(error => console.error('Failed to load data:', error));
@@ -51,13 +52,14 @@ function ProductionChart({ date, api_url }: {date:ProductionChartProps,api_url:s
                 .then(response => response.json())
                 .then(data => {
                     newData.datasets.push({
-                        label: "Theorical production (kWh)",
+                        label: "Production théorique",
                         data: data.data.map(entry => entry.solar_rad / 650),
                         fill: true,
                         borderColor: 'rgb(243, 225, 247)',
                         backgroundColor: 'rgb(243, 225, 247)',
                         tension: 0.3,
-                        pointRadius: 0
+                        pointRadius: 0,
+                        order: 1
                     });
                 })
                 .catch(error => console.error('Failed to load data: ', error));
@@ -82,7 +84,7 @@ function ProductionChart({ date, api_url }: {date:ProductionChartProps,api_url:s
                 beginAtZero: true,
                 title: {
                     display: true,
-                    text: 'Electricity (kWh)'
+                    text: 'Energie (kWh)'
                 }
             }
         }
