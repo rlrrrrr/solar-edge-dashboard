@@ -16,9 +16,6 @@ export default class AdminsController {
    */
   async store({ request }: HttpContext) {
     const { identifier, password } = request.body()
-    console.log("controller")
-    logger.info(identifier, password)
-    console.log(identifier, password)
     await this.adminRepository.save(identifier, password)
   }
 }
