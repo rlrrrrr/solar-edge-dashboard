@@ -9,11 +9,11 @@
 ## Objectifs
 Le projet que nous souhaitons réaliser concerne le développement d'une application mobile et d'un site web dédiés à l'IUT, centrés sur le Magasin Connecté
 
-# Deployment
-Simply run `docker compose up -d`
+# Deploiement 
+Créer et remplir les fichier `.env` respectivement dans les dossiers du `front` et du `back` (en suivant l'example donné dans `.env.example`. Puis utiliser `docker compose up -d`.
 
-#  Others
-Login workflow:
+#  Schémas variées 
+Fonctionnement du login:
 ```mermaid
 sequenceDiagram
     Front->>+BackDuFront: Authenticate me with user=test password=test
