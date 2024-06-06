@@ -61,29 +61,29 @@ export default function Component() {
     return (
         <>
             <div className="flex min-h-screen flex-col">
-                <Title supClass="mb-10">Dashboard de la journée: panneaux solaires</Title>
+                <Title supClass="mb-10">Dashboard de la journée</Title>
                 <div className="flex-1 bg-gray-100 py-8 flex justify-center">
                     <div className="flex flex-col w-full max-w-4xl gap-8 p-[10px]">
-                        <DashboardCard title="Production de cette journée">
-                            <DayProductionChart />
+                        <DashboardCard title="Production journalière">
+                            <DayProductionChart data={data.productionDay} />
                         </DashboardCard>
-                        <DashboardCard title="Histogramme des emissions de gaz depuis le debut">
-                            <GasEmissionChart />
+                        <DashboardCard title="Total des émissions de gaz économisé">
+                            <GasEmissionChart data={data.gazEmission} />
                         </DashboardCard>
-                        <DashboardCard title="Graphique de la production theorique des prochaines 24h">
-                            <TheoricProductionChart />
+                        <DashboardCard title="Production théorique des prochaines 24h">
+                            <TheoricProductionChart data={data.theoricProduction} />
                         </DashboardCard>
                     </div>
                 </div>
-                <Title supClass="mb-10">Dashboard avec selection de date: panneaux solaires</Title>
+                <Title supClass="mb-10">Dashboard avec selection de date</Title>
                 <DatePickerWithRange date={date} setDate={setDate} />
                 <div className="flex-1 bg-gray-100 py-8 flex justify-center p-[10px]">
                     <div className="flex flex-col w-full max-w-4xl gap-8">
                         <DashboardCard title="Production">
-                            <ProductionChart date={date} />
+                            <ProductionChart date={date} api_url={data.url} />
                         </DashboardCard>
-                        <DashboardCard title="Informations generales">
-                            <EnergyDataChart date={date} />
+                        <DashboardCard title="Informations générales">
+                            <EnergyDataChart date={date} api_url={data.url} />
                         </DashboardCard>
                     </div>
                 </div>
