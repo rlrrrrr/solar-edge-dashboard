@@ -31,13 +31,13 @@ function ProductionChart({ date, api_url }: {date:ProductionChartProps,api_url:s
                 .then(response => response.json())
                 .then(data => {
                     newData.labels = data.energy.values.map(entry => entry.date);
+                    console.log(newData.labels);
                     newData.datasets.push({
                         label: "Energy production (kWh)",
-                        xAxisID: 'xAxis0',
                         data: data.energy.values.map(entry => entry.value / 1000),
                         fill: false,
                         borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1,
+                        tension: 0.3,
                         pointRadius: 0
                     });
                 })
@@ -52,11 +52,11 @@ function ProductionChart({ date, api_url }: {date:ProductionChartProps,api_url:s
                 .then(data => {
                     newData.datasets.push({
                         label: "Theorical production (kWh)",
-                        xAxisID: 'xAxis0',
-                        data: data.data.map(entry => entry.solar_rad * 130 / 1000 / 24),
-                        fill: false,
-                        borderColor: 'rgb(175, 92, 192)',
-                        tension: 0.1,
+                        data: data.data.map(entry => entry.solar_rad / 650),
+                        fill: true,
+                        borderColor: 'rgb(243, 225, 247)',
+                        backgroundColor: 'rgb(243, 225, 247)',
+                        tension: 0.3,
                         pointRadius: 0
                     });
                 })

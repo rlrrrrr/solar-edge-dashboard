@@ -1,6 +1,30 @@
-import { useState, useEffect } from 'react'; // Importez useEffect
+import { useEffect, useState } from 'react'; // Importez useEffect
 import ChartComponent from '../../components/ui/chart';
-import {format} from "date-fns";
+import { format } from 'date-fns';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+
+import annotationPlugin from "chartjs-plugin-annotation";
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    annotationPlugin
+);
 
 export default function DayProductionChart({data}) {
     const [chartData, setChartData] = useState({
@@ -8,16 +32,20 @@ export default function DayProductionChart({data}) {
         datasets: []
     });
 
+    const currentDate = format(new Date(), 'yyyy-MM-dd');
+    const currentHour = new Date();
+    let flooredMinutes = Math.floor(currentHour.getMinutes() / 15) * 15;
+    currentHour.setMinutes(flooredMinutes);
+
     useEffect(() => {
         const newData = {
-            labels: data.energy.values.map((entry) => format(new Date(entry.date), 'HH:mm:ss')),
+            labels: data.energy.values.map((entry) => format(new Date(entry.date), 'H:mm')),
             datasets: [{
-                label: "Production in a day (Wh)",
-                xAxisID: 'xAxis0',
-                data: data.energy.values.map((entry) => entry.value),
+                label: "Production in a day (kWh)",
+                data: data.energy.values.map((entry) => (entry.value==null ? null : entry.value / 1000)),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                tension: 0.3
             }]
         };
         setChartData(newData);
@@ -27,18 +55,11 @@ export default function DayProductionChart({data}) {
             x: {
                 type: 'time',
                 time: {
-                    parser: 'HH:mm:ss',
+                    parser: 'H:mm',
                     unit: 'hour',
                     displayFormats: {
-                        hour: 'HH'
+                        hour: 'H:mm'
                     }
-                },
-                ticks: {
-                    autoSkip: true,
-                    maxTicksLimit: 24,
-                    maxRotation: 0,
-                    minRotation: 0,
-                    source: 'data',
                 }
             },
             y: {
@@ -48,11 +69,31 @@ export default function DayProductionChart({data}) {
                     text: 'Electricity (kWh)'
                 }
             }
+        },
+        plugins: {
+            legend: {
+                display: false
+            },
+            annotation: {
+                annotations: {
+                    now: {
+                        type: 'line',
+                        scaleID: 'x',
+                        value: format(currentHour, 'HH:mm'),
+                        borderColor: "red",
+                        label: {
+                            display: true,
+                            position: 'start',
+                            content: 'Maintenant'
+                        }
+                    }
+                }
+            }
         }
     };
 
     return (
-        <ChartComponent
+        <Line
             id="energyDayProductionChart"
             chartType="line"
             data={chartData}
