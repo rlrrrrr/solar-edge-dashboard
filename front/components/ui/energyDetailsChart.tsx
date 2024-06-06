@@ -19,7 +19,7 @@ const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url
         if (!date.from || !date.to) return;
         const [startDate, endDate] = dateRangeToAPIStr(date);
     
-        const url = `${api_url}/api/energyDetails?startDate=${startDate}&endDate=${endDate}&meters=PRODUCTION,CONSUMPTION,SELFCONSUMPTION,FEEDIN,PURCHASED&timeUnit=QUARTER_OF_AN_HOUR`;
+        const url = `${api_url}/api/energyDetails?startDate=${startDate}&endDate=${endDate}&meters=PRODUCTION,CONSUMPTION,FEEDIN,PURCHASED&timeUnit=QUARTER_OF_AN_HOUR`;
         let newData = {
             labels: [] as string[],
             datasets: [] as JSON[]
@@ -55,14 +55,6 @@ const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url
                         data: getDataForMeterType("Production"),
                         borderColor: 'rgb(23, 162, 184)', 
                         backgroundColor: 'rgba(23, 162, 184, 0.5)',
-                        pointRadius: 0,
-                        tension: 0.3
-                    },
-                    {
-                        label: 'SelfConsumption (kWh)',
-                        data: getDataForMeterType("SelfConsumption"),
-                        borderColor: 'rgb(54, 162, 235)',
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         pointRadius: 0,
                         tension: 0.3
                     },
