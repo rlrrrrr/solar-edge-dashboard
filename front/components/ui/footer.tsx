@@ -1,14 +1,16 @@
 import Paragraph from "./paragraph";
+import { Link } from "@remix-run/react"
 
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-400 mt-20 py-8 px-4 md:px-6 flex-shrink-0">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="flex items-center mb-4 md:mb-0">
-          <span className="font-semibold text-gray-300">Solar Panel</span>
+          <Link className="flex items-center gap-2" to="/">
+            <img className=" h-[80px]" src="./ogoiut.svg" />
+          </Link>
         </div>
         <div className="flex items-center space-x-4">
-          <Paragraph variant="tertiary">lorem ipsum</Paragraph>
           <a className="text-sm hover:text-gray-300 transition-colors" href="#">
             Privacy Policy
           </a>
@@ -21,7 +23,7 @@ export default function Footer() {
         variant="tertiary"
         supClass="mt-5 container mx-auto flex"
       >
-        Développer par Lucas CICARELLI, Romain CLEMENT, Hugo DESSAUD, Riyad LARBAOUI et Thomas RUBINI avec le département de l'IUT de Aix-en-Provence
+        Développé par le département informatique de l'IUT de Aix-en-Provence
       </Paragraph>
     </footer>
   );
