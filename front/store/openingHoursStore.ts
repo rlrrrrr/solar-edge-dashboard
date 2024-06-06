@@ -27,3 +27,9 @@ export const useOpeningHoursStore = create<OpeningHoursState>((set) => ({
   ],
   setOpeningHours: (newHours) => set({ openingHours: newHours }),
 }));
+
+
+export const useStore = create(set => ({
+  data: null,
+  setState: (data) => set(() => ({ data })),
+}));
