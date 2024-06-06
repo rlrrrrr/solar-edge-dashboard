@@ -53,8 +53,9 @@ function ProductionChart({ date, api_url }: {date:ProductionChartProps,api_url:s
                     newData.datasets.push({
                         label: "Theorical production (kWh)",
                         data: data.data.map(entry => entry.solar_rad * 130 / 1000 / 24),
-                        fill: false,
-                        borderColor: 'rgb(175, 92, 192)',
+                        fill: true,
+                        borderColor: 'rgb(243, 225, 247)',
+                        backgroundColor: 'rgb(243, 225, 247)',
                         tension: 0.3,
                         pointRadius: 0
                     });
