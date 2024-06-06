@@ -1,14 +1,14 @@
 import { HttpContext } from '@adonisjs/core/http'
-import User from '#models/user'
+import { AuthentificationService } from '#contracts/auth-service'
+import { inject } from '@adonisjs/core'
 
+@inject()
 export default class SessionController {
+  constructor(protected authService: AuthentificationService) {}
   async store({ request, auth, response }: HttpContext) {
     const { identifier, password } = request.only(['identifier', 'password'])
 
-    const user = await User.verifyCredentials(identifier, password)
-
-    await auth.use('web').login(user)
-
+    await this.authService.auth(identifier, password, auth)
     response.json('authenticated')
   }
 }
