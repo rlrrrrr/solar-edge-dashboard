@@ -27,7 +27,7 @@ export default function TheoricProductionChart({data}) {
             datasets: [{
                 label: "Production théorique",
                 xAxisID: 'xAxis0',
-                data: solarData.map(entry => entry.solarRad * 130 / 1000),
+                data: solarData.map(entry => entry.solarRad / 650),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.3
