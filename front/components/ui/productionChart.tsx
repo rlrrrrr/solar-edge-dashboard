@@ -9,7 +9,7 @@ interface ProductionChartProps {
     date: DateRange;
 }
 
-function ProductionChart({ date }: ProductionChartProps) {
+function ProductionChart({ date, api_url }: {date:ProductionChartProps,api_url:string}) {
     const [chartData, setChartData] = useState({
         labels: [] as string[],
         datasets: [] as JSON[]
@@ -20,7 +20,7 @@ function ProductionChart({ date }: ProductionChartProps) {
 
             if (!date.from || !date.to) return;
             const [startDate, endDate] = dateRangeToAPIStr(date)
-            const url = `${process.env.API_URL}/api/electricity?startDate=${startDate}&endDate=${endDate}&timeUnit=QUARTER_OF_AN_HOUR`;
+            const url = `${api_url}/api/electricity?startDate=${startDate}&endDate=${endDate}&timeUnit=QUARTER_OF_AN_HOUR`;
 
             let newData = {
                 labels: [] as string[],
@@ -45,7 +45,7 @@ function ProductionChart({ date }: ProductionChartProps) {
             
             const endDateTheorical = format(addDays(endDate, 1), 'yyyy-MM-dd')
 
-            const radiation_url = `${process.env.API_URL}/api/daily_solar_radiation?startDate=${startDate}&endDate=${endDateTheorical}`;
+            const radiation_url = `${api_url}/api/daily_solar_radiation?startDate=${startDate}&endDate=${endDateTheorical}`;
             console.log(radiation_url)
             let req2 = fetch(radiation_url)
                 .then(response => response.json())
