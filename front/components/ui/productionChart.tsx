@@ -31,7 +31,6 @@ function ProductionChart({ date, api_url }: {date:ProductionChartProps,api_url:s
                 .then(response => response.json())
                 .then(data => {
                     newData.labels = data.energy.values.map(entry => entry.date);
-                    console.log(newData.labels);
                     newData.datasets.push({
                         label: "Production d'énergie",
                         data: data.energy.values.map(entry => entry.value / 1000),
@@ -47,7 +46,6 @@ function ProductionChart({ date, api_url }: {date:ProductionChartProps,api_url:s
             const endDateTheorical = format(addDays(endDate, 1), 'yyyy-MM-dd')
 
             const radiation_url = `${api_url}/api/daily_solar_radiation?startDate=${startDate}&endDate=${endDateTheorical}`;
-            console.log(radiation_url)
             let req2 = fetch(radiation_url)
                 .then(response => response.json())
                 .then(data => {
