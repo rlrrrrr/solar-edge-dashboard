@@ -41,8 +41,8 @@ export default function DayProductionChart({data}) {
         const newData = {
             labels: data.energy.values.map((entry) => format(new Date(entry.date), 'H:mm')),
             datasets: [{
-                label: "Production in a day (Wh)",
-                data: data.energy.values.map((entry) => entry.value),
+                label: "Production in a day (kWh)",
+                data: data.energy.values.map((entry) => (entry.value==null ? null : entry.value / 1000)),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.3
