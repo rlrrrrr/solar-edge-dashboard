@@ -3,14 +3,14 @@ import {Label} from "components/ui/label"
 import {Input} from "components/ui/input"
 import {Button} from "components/ui/button"
 import Title from 'components/ui/title'
-import {ActionFunctionArgs, redirect} from "@remix-run/node";
+import {ActionFunctionArgs, json, redirect} from "@remix-run/node";
 import {authCookie} from "~/auth";
 
 
 export async function action({request}: ActionFunctionArgs) {
   const formData: FormData = await request.formData();
-  console.log(process.env.API_URL);
-  const response = await fetch(process.env.API_URL+"/login", {
+  const api_url = new URL(`${process.env.API_URL}/login`)
+  const response = await fetch(api_url, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -22,15 +22,16 @@ export async function action({request}: ActionFunctionArgs) {
         }
     )
   })
-  if (response.status !== 200) {
+  if (response.status < 200 && response.status >= 300) {
     throw redirect("/login")
   }
-  const cookieValue = {login:true};
-  return redirect('/panel', {
+  const cookieValue = {login:true}
+  redirect('/panel/settings', {
     headers:{
       "Set-Cookie": await authCookie.serialize(cookieValue)
     }
   })
+  return json({response:response})
 }
 
 export default function Component() {

@@ -1,6 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { inject } from '@adonisjs/core'
 import { RepositoryService } from '#contracts/repository'
+import logger from '@adonisjs/core/services/logger'
 @inject()
 export default class AdminsController {
   constructor(protected adminRepository: RepositoryService) {}
@@ -15,6 +16,9 @@ export default class AdminsController {
    */
   async store({ request }: HttpContext) {
     const { identifier, password } = request.body()
+    console.log("controller")
+    logger.info(identifier, password)
+    console.log(identifier, password)
     await this.adminRepository.save(identifier, password)
   }
 }
