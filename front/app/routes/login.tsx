@@ -26,12 +26,12 @@ export async function action({request}: ActionFunctionArgs) {
     throw redirect("/login")
   }
   const cookieValue = {login:true}
-  redirect('/panel/settings', {
+  return redirect('/panel/settings', {
     headers:{
       "Set-Cookie": await authCookie.serialize(cookieValue)
     }
   })
-  return json({response:response})
+
 }
 
 export default function Component() {
