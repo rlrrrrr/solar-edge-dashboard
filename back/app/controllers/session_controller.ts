@@ -9,6 +9,6 @@ export default class SessionController {
     const { identifier, password } = request.only(['identifier', 'password'])
 
     await this.authService.auth(identifier, password, auth)
-    response.json('authenticated')
+    response.json({ value: 'authenticated' })
   }
 }
