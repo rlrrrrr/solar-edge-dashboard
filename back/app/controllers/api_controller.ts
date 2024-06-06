@@ -155,6 +155,7 @@ export default class ApiController {
       lang: 'fr',
       start_date: startDate,
       end_date: endDate,
+      tz: 'local',
     }));
 
     if (!resp.ok) {
@@ -176,6 +177,7 @@ export default class ApiController {
       lon: longitude!,
       lang: 'fr',
       hours: '24',  // One day
+      tz: 'local',
     }));
 
     if (!resp.ok) {
