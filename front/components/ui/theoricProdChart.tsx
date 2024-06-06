@@ -15,12 +15,10 @@ export default function TheoricProductionChart({data}) {
         datasets: [] as JSON[]
     });
     useEffect(() => {
-        console.log("theoric production data 2 ",data)
         const solarData = data.data.map(entry => ({
             time: entry.timestamp_local,
             solarRad: entry.solar_rad
         }));
-        console.log("theoric production data ", solarData)
 
         const newData = {
             labels: solarData.map(entry => format(new Date(entry.time), 'H:mm')),

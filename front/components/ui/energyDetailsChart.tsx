@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import ChartComponent from './chart';
 import { DateRange } from 'react-day-picker';
 import { dateRangeToAPIStr } from '~/routes/solarPanelDashboard';
+import {addDays, format} from "date-fns";
+
 
 
 interface EnergyDataChartProps {
@@ -18,8 +20,9 @@ const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url
     const fetchData = async () => {
         if (!date.from || !date.to) return;
         const [startDate, endDate] = dateRangeToAPIStr(date);
-    
+        
         const url = `${api_url}/api/energyDetails?startDate=${startDate}&endDate=${endDate}&meters=PRODUCTION,CONSUMPTION,FEEDIN,PURCHASED&timeUnit=QUARTER_OF_AN_HOUR`;
+
         let newData = {
             labels: [] as string[],
             datasets: [] as JSON[]
@@ -48,7 +51,8 @@ const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url
                         borderColor: 'rgb(255, 99, 132)',
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         pointRadius: 0,
-                        tension: 0.3
+                        tension: 0.3,
+                        order:1
                     },
                     {
                         label: 'Production',
@@ -56,7 +60,9 @@ const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url
                         borderColor: 'rgb(23, 162, 184)', 
                         backgroundColor: 'rgba(23, 162, 184, 0.5)',
                         pointRadius: 0,
-                        tension: 0.3
+                        tension: 0.3,
+                        fill:true,
+                        order:3
                     },
                     {
                         label: 'Vendu',
@@ -64,15 +70,18 @@ const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url
                         borderColor: 'rgb(255, 206, 86)',
                         backgroundColor: 'rgba(255, 206, 86, 0.5)',
                         pointRadius: 0,
-                        tension: 0.3
+                        tension: 0.3,
+                        order:0
                     },
                     {
                         label: 'Acheté',
                         data: getDataForMeterType("Purchased"),
-                        borderColor: 'rgb(75, 192, 192)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgb(50,205,50)',
+                        backgroundColor: 'rgba(152, 251, 152, 0.5)',
                         pointRadius: 0,
-                        tension: 0.3
+                        tension: 0.3,
+                        fill : true,
+                        order:2
                     }
                 ];
             })
