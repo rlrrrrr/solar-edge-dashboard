@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import ChartComponent from './chart';
 import { DateRange } from 'react-day-picker';
 import { format } from 'date-fns';
@@ -8,48 +8,33 @@ interface TheoricProductionChartProps {
     date: DateRange;
 }
 
-function TheoricProductionChart() {
+export default function TheoricProductionChart({data}) {
+
     const [chartData, setChartData] = useState({
         labels: [] as string[],
         datasets: [] as JSON[]
     });
-
     useEffect(() => {
-        const foo = async () => {
-            const url = `http://localhost:3333/api/hourly_prediction_solar_radiation`;
+        console.log("theoric production data 2 ",data)
+        const solarData = data.data.map(entry => ({
+            time: entry.timestamp_local,
+            solarRad: entry.solar_rad
+        }));
+        console.log("theoric production data ", solarData)
 
-            let newData = {
-                labels: [] as string[],
-                datasets: [] as JSON[]
-            };
-
-            let req1 = fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Correctly refer to the variable `data` received from the response
-                    const solarData = data.data.map(entry => ({
-                        time: entry.timestamp_local,
-                        solarRad: entry.solar_rad
-                    }));
-
-                    // Transform the data into the format expected by the chart
-                    newData.labels = solarData.map(entry => format(new Date(entry.time), 'HH:mm:ss'));
-                    newData.datasets.push({
-                        label: "Solar Radiation (kWh)",
-                        xAxisID: 'xAxis0',
-                        data: solarData.map(entry => entry.solarRad * 130 / 1000),
-                        fill: false,
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
-                    });
-                })
-                .catch(error => console.error('Failed to load data:', error));
-            
-            await req1;
-            setChartData(newData);
+        const newData = {
+            labels: solarData.map(entry => format(new Date(entry.time), 'HH:mm:ss')),
+            datasets: [{
+                label: "Theorical Energy Production (kWh)",
+                xAxisID: 'xAxis0',
+                data: solarData.map(entry => entry.solarRad * 130 / 1000),
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
         };
-        foo();
-    }, []);
+        setChartData(newData);
+    }, [data]);
 
     const chartOptions = {
         scales: {
@@ -92,5 +77,3 @@ function TheoricProductionChart() {
         />
     );
 }
-
-export default TheoricProductionChart;

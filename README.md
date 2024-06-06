@@ -1,9 +1,9 @@
 #### Membres équipe 1A
-> CECCARELLI Luca
-> CLEMENT Romain
-> DESSAUD Hugo
-> LARBAOUI Riyad
-> RUBINI Thomas
+> CECCARELLI Luca  
+> CLEMENT Romain  
+> DESSAUD Hugo  
+> LARBAOUI Riyad  
+> RUBINI Thomas  
 
 # Magasin Connecté
 ## Objectifs

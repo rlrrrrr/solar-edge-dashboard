@@ -1,4 +1,5 @@
 import {create} from 'zustand';
+import {persist} from 'zustand/middleware'
 
 interface OpeningHour {
   day: string;
@@ -15,15 +16,22 @@ interface OpeningHoursState {
   setOpeningHours: (newHours: OpeningHour[]) => void;
 }
 
-export const useOpeningHoursStore = create<OpeningHoursState>((set) => ({
-  openingHours: [
-    { day: 'Monday', morningStart: '', morningEnd: '', eveningStart: '', eveningEnd: '' },
-    { day: 'Tuesday', morningStart: '', morningEnd: '', eveningStart: '', eveningEnd: '' },
-    { day: 'Wednesday', morningStart: '', morningEnd: '', eveningStart: '', eveningEnd: '' },
-    { day: 'Thursday', morningStart: '', morningEnd: '', eveningStart: '', eveningEnd: '' },
-    { day: 'Friday', morningStart: '', morningEnd: '', eveningStart: '', eveningEnd: '' },
-    { day: 'Saturday', morningStart: '', morningEnd: '', eveningStart: '', eveningEnd: '' },
-    { day: 'Sunday', morningStart: '', morningEnd: '', eveningStart: '', eveningEnd: '' },
-  ],
-  setOpeningHours: (newHours) => set({ openingHours: newHours }),
-}));
+export const useOpeningHoursStore = create(
+  persist<OpeningHoursState>(
+    (set) => ({
+      openingHours: [
+        { day: 'Lundi', morningStart: '08:00', morningEnd: '12:00', eveningStart: '14:00', eveningEnd: '18:00', morningClosed: false, eveningClosed: false },
+        { day: 'Mardi', morningStart: '08:00', morningEnd: '12:00', eveningStart: '14:00', eveningEnd: '18:00', morningClosed: false, eveningClosed: false },
+        { day: 'Mercredi', morningStart: '08:00', morningEnd: '12:00', eveningStart: '14:00', eveningEnd: '18:00', morningClosed: false, eveningClosed: false },
+        { day: 'Jeudi', morningStart: '08:00', morningEnd: '12:00', eveningStart: '14:00', eveningEnd: '18:00', morningClosed: false, eveningClosed: false },
+        { day: 'Vendredi', morningStart: '08:00', morningEnd: '12:00', eveningStart: '14:00', eveningEnd: '18:00', morningClosed: false, eveningClosed: false },
+        { day: 'Samedi', morningStart: '10:00', morningEnd: '13:00', eveningStart: '15:00', eveningEnd: '17:00', morningClosed: false, eveningClosed: false },
+        { day: 'Dimanche', morningStart: '', morningEnd: '', eveningStart: '', eveningEnd: '', morningClosed: true, eveningClosed: true },
+      ],
+      setOpeningHours: (newHours) => set({ openingHours: newHours }),
+    }),
+    {
+      name: 'opening-hours-storage', // name of the item in the storage
+    }
+  )
+);

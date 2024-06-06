@@ -13,9 +13,6 @@ if (!latitude) throw new Error("Missing latitude in env");
 let longitude = env.get('LONGITUDE');
 if (!longitude) throw new Error("Missing longitude in env");
 
-let apiKey = env.get('SOLAREDGE_APIKEY');
-if (!apiKey) throw new Error("Missing SolarEdge API key in env");
-
 let siteId = env.get('SOLAREDGE_SITEID');
 if (!siteId) throw new Error("Missing SolarEdge Site ID in env");
 
@@ -61,12 +58,13 @@ export default class ApiController {
     logger.info(`Sending SolarEdge request with start date ${startDate}, end date ${endDate}, time unit ${timeUnit}`);
     logger.debug(`(Wanted key is ${key.toString()})`);
     // make request to SolarEdge API
-    let resp = await fetch(endpoint + `/site/${siteId}/energy?`+new URLSearchParams({
-          api_key: apiKey!,
+      let url = endpoint + `/site/${siteId}/energy?`+new URLSearchParams({
+      api_key: env.get("SOLAREDGE_APIKEY"),
       startDate: startDate,
       endDate: endDate,
       timeUnit: timeUnit,
-    }));
+    });
+    let resp = await fetch(url);
 
     if (!resp.ok) {
       response.status(500).send(`Request to SolarEdge failed: ${resp.statusText} (Status code ${resp.status})`);
@@ -88,7 +86,7 @@ export default class ApiController {
 
       logger.info(`Sending SolarEdge request for CO2`);
       let resp = await fetch(endpoint + `/site/${siteId}/envBenefits?`+new URLSearchParams({
-        api_key: apiKey!,
+        api_key: env.get("SOLAREDGE_APIKEY"),
       }));
 
       if (!resp.ok) {
@@ -121,7 +119,7 @@ export default class ApiController {
 
       logger.info(`Sending SolarEdge request for energy details`);
       let resp = await fetch(endpoint + `/site/${siteId}/energyDetails?`+new URLSearchParams({
-        api_key: apiKey!,
+        api_key: env.get("SOLAREDGE_APIKEY"),
         startTime: startDate+" 00:00:00",
         endTime: endDate+" 23:59:59",
         timeUnit: timeUnit,
@@ -134,7 +132,6 @@ export default class ApiController {
       }
 
       value = await resp.json() as JSON;
-      console.log(value);
       energyDetailsCache.set(key.toString(), value);
 
     } else {

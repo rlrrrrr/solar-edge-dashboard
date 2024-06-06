@@ -9,7 +9,7 @@ interface EnergyDataChartProps {
     date: DateRange;
 }
 
-const EnergyDataChart = ({ date }: EnergyDataChartProps) => {
+const EnergyDataChart = ({ date, api_url } : {date:EnergyDataChartProps, api_url:string}) => {
     const [chartData, setChartData] = useState({
         labels: [] as string[],
         datasets: [] as JSON[]
@@ -19,8 +19,7 @@ const EnergyDataChart = ({ date }: EnergyDataChartProps) => {
         if (!date.from || !date.to) return;
         const [startDate, endDate] = dateRangeToAPIStr(date);
     
-        const url = `http://localhost:3333/api/energyDetails?startDate=${startDate}&endDate=${endDate}&meters=PRODUCTION,CONSUMPTION,SELFCONSUMPTION,FEEDIN,PURCHASED&timeUnit=QUARTER_OF_AN_HOUR`;
-    
+        const url = `${api_url}/api/energyDetails?startDate=${startDate}&endDate=${endDate}&meters=PRODUCTION,CONSUMPTION,SELFCONSUMPTION,FEEDIN,PURCHASED&timeUnit=QUARTER_OF_AN_HOUR`;
         let newData = {
             labels: [] as string[],
             datasets: [] as JSON[]
@@ -96,6 +95,12 @@ const EnergyDataChart = ({ date }: EnergyDataChartProps) => {
                 time: {
                     unit: 'day'
                 }
+            },
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Electricity (kWh)'                }
             }
         }
     };
