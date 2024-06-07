@@ -12,8 +12,8 @@ import { middleware } from '#start/kernel'
 import ApiController from '#controllers/api_controller'
 import SessionController from '#controllers/session_controller'
 import AdminsController from "#controllers/admins_controller";
-import AdminController from '#controllers/admin_controller'
 import CalendarController from '#controllers/calendar_controller'
+import ApiKeyController from "#controllers/api_key_controller";
 
 router.get('/', async () => {
   return {
@@ -38,7 +38,7 @@ router.get('/api/energyDetails', [ApiController, 'energyDetails'])
 
 router.get('/api/daily_solar_radiation', [ApiController, 'daily_solar_radiation'])
 router.get('/api/hourly_prediction_solar_radiation', [ApiController, 'hourly_prediction_solar_radiation'])
-router.post('/admin/solarEdgeKey', [AdminController, 'setSolarEdgeKey'])
+router.post('/admin/solarEdgeKey', [ApiKeyController, 'setSolarEdgeKey'])
 router.get('/calendar', [CalendarController, 'get'])
 router.post('/calendar', [CalendarController, 'set'])
 
