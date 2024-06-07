@@ -1,29 +1,20 @@
 import SelectOpeningTime from "../../components/ui/selectOpeningTime";
 import {useLoaderData} from "@remix-run/react";
-import {ActionFunctionArgs, json, redirect} from "@remix-run/node";
+import {ActionFunctionArgs, redirect} from "@remix-run/node";
 
 
 export async function action({request,
                              }: ActionFunctionArgs){
-    console.log("test ",request)
     const formData = await request.formData()
     const newPlanner = formData.get("openingTimes")
-
-
-    // console.log("b",body)
-    //const {openingTimes} = JSON.parse(body[body.find('openingTimes=')])
-    console.log("openingtimes From body ",)
     const response = await fetch(`${process.env.API_URL}/calendar`, {
         method: "post",
         body: newPlanner
     })
 
     if (response.status !== 200) {
-        console.log(response)
-        throw Error("dont works")
+        throw Error("planer dispatch error")
     }
-    console.log("suceed ",response)
-
     return redirect('/panel')
 }
 

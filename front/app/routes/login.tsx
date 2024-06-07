@@ -1,11 +1,10 @@
-import {Form, useActionData} from '@remix-run/react'
+import {Form} from '@remix-run/react'
 import {Label} from "components/ui/label"
 import {Input} from "components/ui/input"
 import {Button} from "components/ui/button"
 import Title from 'components/ui/title'
-import {ActionFunctionArgs, json, redirect} from "@remix-run/node";
+import {ActionFunctionArgs, redirect} from "@remix-run/node";
 import {authCookie} from "~/auth";
-import {useState} from "react";
 
 
 export async function action({request}: ActionFunctionArgs) {
@@ -23,13 +22,13 @@ export async function action({request}: ActionFunctionArgs) {
         }
     )
   })
-  if (response.status < 200 && response.status >= 300) {
+  if (response.status !== 200) {
     throw redirect("/login", {
 
     })
   }
   const cookieValue = {login:true}
-  return redirect('/panel/settings', {
+  return redirect('/panel', {
     headers:{
       "Set-Cookie": await authCookie.serialize(cookieValue)
     }
