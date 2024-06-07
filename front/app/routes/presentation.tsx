@@ -1,10 +1,19 @@
-
-import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "components/ui/table"
 import OpeningTimeTable from "components/ui/openingTimeTable"
 import ParagraphSection from "components/ui/paragraphSection"
 import Section from "components/ui/section"
+import {useLoaderData} from "@remix-run/react";
+
+export async function loader(){
+    const response = await fetch(`${process.env.API_URL}/calendar`)
+    if (!response.ok) {
+        throw new Error('Failed to fetch data planner');
+    }
+    const result = await response.json()
+    return result;
+}
 
 export default function Component() {
+    const openingHours = useLoaderData<typeof loader>();
     return (
         <>
             <div className="space-y-8">
@@ -18,7 +27,7 @@ export default function Component() {
                     text={"Notre outil est conçu pour être intuitif et facile à utiliser. Vous pouvez facilement ajouter des tâches, les organiser en projets et suivre leur avancement. Vous pouvez également inviter des membres de votre équipe à collaborer avec vous."}
                     imgSrc="/ComoFonctionado.webp"                    flexDirection={true}
                 />
-                <OpeningTimeTable/>
+                <OpeningTimeTable openingHours={openingHours}/>
             </div>
         </>
     )

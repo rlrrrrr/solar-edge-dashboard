@@ -1,35 +1,9 @@
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "components/ui/table";
 import Title from "./title";
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { useOpeningHoursStore } from '../../store/openingHoursStore';
 
-// Define the loader function to fetch data from the API
-export const loader = async () => {
-    let response;
-    try {
-        response = await fetch(`${process.env.API_URL}/calendar`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch');
-        }
-    } catch (error) {
-        const { openingHours } = useOpeningHoursStore.getState();
-        return json(openingHours);
-    }
 
-    const openingHours = await response.json();
-    return json(openingHours);
-};
-
-const OpeningTimeTable = () => {
-    const openingHours = useLoaderData();
-
+export default function OpeningTimeTable({openingHours}) {
     return (
         <div className="space-y-2">
             <Title variant='secondary'>Les Horaires de l'épicerie solidaire</Title>
@@ -61,6 +35,4 @@ const OpeningTimeTable = () => {
             </div>
         </div>
     );
-};
-
-export default OpeningTimeTable;
+}

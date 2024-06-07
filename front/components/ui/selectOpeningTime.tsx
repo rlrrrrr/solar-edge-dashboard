@@ -1,35 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './button';
 import { Input } from './input';
-import { json } from "@remix-run/node";
-import { useLoaderData, useFetcher } from "@remix-run/react";
+import { useFetcher } from "@remix-run/react";
 import { useOpeningHoursStore } from '../../store/openingHoursStore';
 
-// Define the loader function to fetch data from the API
-export const loader = async () => {
-    let response;
-    try {
-        response = await fetch(`${process.env.API_URL}/calendar`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch');
-        }
-    } catch (error) {
-        const { openingHours } = useOpeningHoursStore.getState();
-        return json(openingHours);
-    }
 
-    const openingHours = await response.json();
-    return json(openingHours);
-};
-
-const OpeningTimesSelector = () => {
-  const openingHours = useLoaderData();
+export default function OpeningTimesSelector({openingHours}){
   const fetcher = useFetcher();
   const { setOpeningHours: setStoredOpeningHours } = useOpeningHoursStore();
 
@@ -54,7 +31,10 @@ const OpeningTimesSelector = () => {
     const newOpeningTimes = [...openingTimes];
     newOpeningTimes[index] = { ...newOpeningTimes[index], [period]: value };
     setOpeningTimes(newOpeningTimes);
+
+    console.log("newOpeningTimes ", newOpeningTimes)
   };
+
 
   const handleClosedChange = (index, period, isClosed) => {
     const newOpeningTimes = [...openingTimes];
@@ -65,7 +45,7 @@ const OpeningTimesSelector = () => {
   const handleSubmit = () => {
     fetcher.submit(
       { openingTimes: JSON.stringify(openingTimes) },
-      { method: 'post', action: '/calendar' }
+      { method: 'post', action: '/panel/planner' }
     );
 
     if (!fetcher.state) {
@@ -148,11 +128,10 @@ const OpeningTimesSelector = () => {
           </div>
         </div>
       ))}
-      <Button onClick={handleSubmit}>
+      <Button onClick={() => {handleSubmit()}}>
         Save Opening Times
       </Button>
     </div>
   );
 };
 
-export default OpeningTimesSelector;
