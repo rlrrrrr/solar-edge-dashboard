@@ -1,7 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { inject } from '@adonisjs/core'
 import { UserRepositoryService } from '#contracts/repository'
-import { userSchema, identifierSchema, passwordSchema } from '#utils/schemas'
+import { userSchema, passwordSchema } from '#utils/schemas'
 import vine from '@vinejs/vine'
 @inject()
 export default class AdminsController {
@@ -20,11 +20,8 @@ export default class AdminsController {
     await this.adminRepository.save(validatedData.identifier, validatedData.password)
   }
 
-
   async updatePassword({ params, request }: HttpContext) {
     const password = request.body();
-
-    console.log('password ', password);
     const validator = vine.compile(passwordSchema);
     const validatedData = await validator.validate(password);
     await this.adminRepository.updatePassword(params.identifier, validatedData.password)
