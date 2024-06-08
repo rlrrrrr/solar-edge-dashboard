@@ -17,6 +17,7 @@ import ApiKeyController from "#controllers/api_key_controller";
 
 router.post('/login', [SessionController, 'store']);
 router.post('/signin', [AdminsController, 'store']).use(middleware.auth());
+router.put('/admin/:identifier', [AdminsController, 'updatePassword']).use(middleware.auth());
 
 router.post('/admin/solarEdgeKey', [ApiKeyController, 'setSolarEdgeKey']).use(middleware.auth());
 

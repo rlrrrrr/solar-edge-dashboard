@@ -1,4 +1,4 @@
-import { RepositoryService } from '#contracts/repository'
+import { UserRepositoryService } from '#contracts/repository'
 import { AuthentificationService } from '#contracts/auth-service'
 import { ApplicationService } from '@adonisjs/core/types'
 
@@ -10,7 +10,7 @@ export default class AppProvider {
     this.app.container.bind(AuthentificationService, () => {
       return this.app.container.make(AuthentificationSessionService)
     })
-    this.app.container.bind(RepositoryService, () => {
+    this.app.container.bind(UserRepositoryService, () => {
       return this.app.container.make(AdminRepository)
     })
   }
