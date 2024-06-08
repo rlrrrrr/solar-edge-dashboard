@@ -3,9 +3,13 @@ import UuidGenerator from '#services/uuid-generator'
 import { inject } from '@adonisjs/core'
 import { RepositoryService } from '#contracts/repository'
 
+
+
+
 @inject()
 export class AdminRepository implements RepositoryService {
   constructor(protected uuidGenerator: UuidGenerator) {}
+
 
   async save(identifier: string, password: string) {
     const uuid = this.uuidGenerator.generate()
