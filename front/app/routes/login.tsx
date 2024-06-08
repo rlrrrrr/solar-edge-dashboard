@@ -5,6 +5,7 @@ import {Button} from "components/ui/button"
 import Title from 'components/ui/title'
 import {ActionFunctionArgs, redirect} from "@remix-run/node";
 import {authCookie} from "~/auth";
+import {useActionData} from "react-router";
 
 
 export async function action({request}: ActionFunctionArgs) {
@@ -23,9 +24,9 @@ export async function action({request}: ActionFunctionArgs) {
     )
   })
   if (response.status !== 200) {
-    throw redirect("/login", {
-
-    })
+    return {
+      error: 'Identifiant ou mot de passe incorrect. Veuillez réessayer.'
+    };
   }
   const cookieValue = {login:true}
   return redirect('/panel', {
@@ -37,6 +38,7 @@ export async function action({request}: ActionFunctionArgs) {
 }
 
 export default function Component() {
+  const actionErrors = useActionData<typeof loader>();
   return (
       <div
           className="flex min-h-screen items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 dark:bg-gray-900">
@@ -86,6 +88,8 @@ export default function Component() {
                 Se connecter
               </Button>
             </div>
+            {/* Affichez les erreurs ici */}
+            {actionErrors?.error && <p style={{ color: 'red' }}>{actionErrors.error}</p>}
           </Form>
         </div>
       </div>
