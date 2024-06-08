@@ -16,9 +16,9 @@ export class AdminRepository implements UserRepositoryService {
   }
 
   async updatePassword(identifier: string, password: string): Promise<void> {
-    await Admin
-      .query()
-      .where('identifier', identifier)
-      .update({password:password});
+    const admin = await Admin.findByOrFail('identifier', identifier);
+    admin.password = password;
+    await admin.save();
+
   }
 }
